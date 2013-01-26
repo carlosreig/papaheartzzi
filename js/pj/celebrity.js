@@ -1,7 +1,8 @@
 function Celebrity(spriteWidth, spriteHeight) {
 	region = Math.floor(Math.random()*4);
-	image = 'misc/walker2.gif';
+	image = 'images/celebrity.png';
 	var pj = new Pj(region, spriteWidth, spriteHeight, image);
+	pj.sprite.frame = [0, 1, 2, 3, 4];
 
 	this.getSprite = function() {
 		return pj.getSprite();

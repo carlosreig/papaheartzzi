@@ -17,7 +17,7 @@
             game.fps = 30;
             game.preload('misc/tileMap.png', 
                          'misc/walker.gif', 
-                         'misc/walker2.gif',
+                         'images/celebrity.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav');
             var music = 'misc/bgm.wav';
@@ -30,7 +30,7 @@
                     console.log("Paparazzi sprite: ");
                     console.log(paparazziSprite);
                 }
-                var celebrity = new Celebrity(14, 26);
+                var celebrity = new Celebrity(10, 30);
                 celebritySprite = celebrity.getSprite();
                 if (debug) {
                     console.log("Celebrity sprite: ");
