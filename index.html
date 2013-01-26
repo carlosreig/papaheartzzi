@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <script type="text/javascript" language="javascript" src="js/enchant.js"></script>
+        <script type="text/javascript" language="javascript" src="js/game.js"></script>
+        <script type="text/javascript" language="javascript" src="js/map.js"></script>
+        <script type="text/javascript" language="javascript" src="js/pj/pj.js"></script>
+        <script type="text/javascript" language="javascript" src="js/pj/paparazzi.js"></script>
+        <script type="text/javascript" language="javascript" src="js/pj/celebrity.js"></script>
+    </head>
+    <body style="margin:0; padding: 0;">
+        <script>
+            enchant(); // initialize
+            var game = new Game(width, height); // game stage
+            game.fps = 30;
+            game.preload('misc/tiles.gif', 'misc/walker.gif', 'misc/camera.wav');
+            game.onload = function() {
+                var map = getGameMap();
+                var scene = new Scene();
+                var paparazzi = new Paparazzi(14, 26);
+                paparazziSprite = paparazzi.getSprite();
+                if (debug) {
+                    console.log("Paparazzi sprite: ");
+                    console.log(paparazziSprite);
+                }
+                var celebrity = new Celebrity(14, 26);
+                celebritySprite = celebrity.getSprite();
+                scene.addChild(map);
+                scene.addChild(paparazziSprite);
+                scene.addChild(celebritySprite);
+                game.pushScene(scene);
+            };
+            game.start(); // start your game!
+        </script>
+    </body>
+</html>
