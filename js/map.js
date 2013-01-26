@@ -29,12 +29,6 @@ function isPositionAvailable(x, y, transform) {
     }
     if (debug) {
         console.log('Map function isPositionAvailable');
-        debugVars = [];
-        
-        debugVars[1] = x;
-        debugVars[2] = y;
-        debugVars[3] = transform;
-        console.log(debugVars);
     }
     
     if (y > (verticalTiles - 1) || y < 0 || x > (horizontalTiles - 1) || x < 0 || collisions[y][x] > 0) {
@@ -51,17 +45,3 @@ function isPositionAvailable(x, y, transform) {
         return true;
     }
 }
-
-/*
-function isCollision(paparazziSprite, celebritySprite) {
-    if (paparazziSprite.intersect(celebritySprite)) {
-        alert("hit!");
-    }
-}
-/*
-function isNearCollision(paparazzi, celebrity, farAway) {
-    if(paparazzi.getSprite.within(celebrity.getSprite, farAway)) {
-        alert("He's near!");
-    }
-}
-*/

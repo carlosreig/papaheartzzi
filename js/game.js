@@ -1,7 +1,7 @@
 // Global variables
-var width = 150;
-var height = 150;
-var tileSize = 10;
+var width = 300;
+var height = 300;
+var tileSize = 20;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
 var speed = 10;
@@ -15,3 +15,6 @@ var debug = true;
 
 // Enable for background music
 var isMusicEnabled = false;
+
+// List of sprites
+var pjsList = [];
