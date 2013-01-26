@@ -13,10 +13,10 @@
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = 30;
-            game.preload('misc/tiles.gif', 'misc/walker.gif', 'misc/camera.wav');
+            game.preload('misc/tiles.gif', 'misc/walker.gif', 'misc/walker2.gif', 'misc/camera.wav');
             game.onload = function() {
                 var map = getGameMap();
-                var scene = new Scene();
+                var scene = new Scene();                
                 var paparazzi = new Paparazzi(14, 26);
                 paparazziSprite = paparazzi.getSprite();
                 if (debug) {
@@ -25,6 +25,10 @@
                 }
                 var celebrity = new Celebrity(14, 26);
                 celebritySprite = celebrity.getSprite();
+                if (debug) {
+                    console.log("Celebrity sprite: ");
+                    console.log(celebritySprite);
+                }
                 scene.addChild(map);
                 scene.addChild(paparazziSprite);
                 scene.addChild(celebritySprite);

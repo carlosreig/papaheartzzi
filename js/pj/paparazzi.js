@@ -1,6 +1,8 @@
 function Paparazzi(spriteWidth, spriteHeight) {
 	region = Math.floor(Math.random()*4);
-	var pj = new Pj(region, spriteWidth, spriteHeight);
+	image = 'misc/walker.gif';
+	var pj = new Pj(region, spriteWidth, spriteHeight, image
+		);
 
 	this.getSprite = function() {
 		return pj.getSprite();

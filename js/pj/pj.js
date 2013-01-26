@@ -1,27 +1,27 @@
-function Pj(region, spriteWidth, spriteHeight) {
-	sprite = new Sprite(spriteWidth, spriteHeight);
-	sprite.image = game.assets['misc/walker.gif'];
-	position = getAvailablePosition(coll);
-	sprite.x = position['width'];
-	sprite.y = position['height'];
+function Pj(region, spriteWidth, spriteHeight, spriteImage) {
+	this.sprite = new Sprite(spriteWidth, spriteHeight);
+	this.sprite.image = game.assets[spriteImage];
+	this.position = getAvailablePosition(coll);
+	this.sprite.x = this.position['width'];
+	this.sprite.y = this.position['height'];
 
 	this.getSprite = function() {
-		return sprite;
+		return this.sprite;
 	}
 
 	this.setX = function(x) {
-		sprite.x = x;
+		this.sprite.x = x;
 	}
 
 	this.setY = function(y) {
-		sprite.y = y;
+		this.sprite.y = y;
 	}
 
 	this.getX = function() {
-		return sprite.x;
+		return this.sprite.x;
 	}
 
 	this.getY = function() {
-		return sprite.y;
+		return this.sprite.y;
 	}
 }
