@@ -4,10 +4,6 @@ function Celebrity(spriteWidth, spriteHeight) {
 	var pj = new Pj(region, spriteWidth, spriteHeight, image);
 	pj.setId('celebrity');
 
-	var forwardFrames = [0, 1, 2, 1, 0, 3, 4, 3];
-	var backwardFrames = [5, 6, 7, 6, 8, 9, 8];
-	pj.sprite.frame = pj.forwardFrames;
-
 	this.getSprite = function() {
 		return pj.getSprite();
 	}
