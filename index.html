@@ -15,9 +15,9 @@
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = 30;
-            game.preload('misc/tiles.gif', 
+            game.preload('images/tileMap.png', 
                          'misc/walker.gif', 
-                         'misc/walker2.gif',
+                         'images/celebrity.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav');
             var music = 'misc/bgm.wav';
@@ -29,6 +29,17 @@
                 
                 pjsList[0] = paparazzi;
                 pjsList[1] = celebrity;
+                paparazziSprite = paparazzi.getSprite();
+                if (debug) {
+                    console.log("Paparazzi sprite: ");
+                    console.log(paparazziSprite);
+                }
+                var celebrity = new Celebrity(10, 30);
+                celebritySprite = celebrity.getSprite();
+                if (debug) {
+                    console.log("Celebrity sprite: ");
+                    console.log(celebritySprite);
+                }
 
                 // Background music
                 if (isMusicEnabled) {

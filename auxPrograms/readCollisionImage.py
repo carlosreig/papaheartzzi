@@ -34,7 +34,7 @@ for z in range(numberOfTilesHorizontal):
 				average += (pixel[0] + pixel[1] + pixel[2]) / 3;
 	
 		average = average / (tileSize * tileSize);
-		colisionableMatrix[z][i] = (1, 0) [average > 128];
+		colisionableMatrix[z][i] = (1, 0) [average < 128];
 
 print "var collisions = [";
 for i in range(numberOfTilesHorizontal):
