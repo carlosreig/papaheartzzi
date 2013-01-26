@@ -1,7 +1,7 @@
 // Global variables
-var width = 300;
-var height = 300;
-var tileSize = 20;
+var width = 150;
+var height = 150;
+var tileSize = 10;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
 var speed = 10;
