@@ -15,7 +15,7 @@
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = 30;
-            game.preload('misc/tileMap.png', 
+            game.preload('misc/tiles.gif', 
                          'misc/walker.gif', 
                          'misc/walker2.gif',
                          'misc/camera.wav', 
@@ -25,33 +25,20 @@
                 var map = getGameMap();
                 var scene = new Scene();                
                 var paparazzi = new Paparazzi(14, 26);
-                paparazziSprite = paparazzi.getSprite();
-                if (debug) {
-                    console.log("Paparazzi sprite: ");
-                    console.log(paparazziSprite);
-                }
                 var celebrity = new Celebrity(14, 26);
-                celebritySprite = celebrity.getSprite();
-                if (debug) {
-                    console.log("Celebrity sprite: ");
-                    console.log(celebritySprite);
-                }
-                // Background music
+                
+                pjsList[0] = paparazzi;
+                pjsList[1] = celebrity;
 
+                // Background music
                 if (isMusicEnabled) {
                     this.assets[music].play();
                 }
 
-                game.addEventListener('enterframe', function() {
-                    if (hasCollided(paparazziSprite, celebritySprite)) {
-                        console.log('Collision!');
-                    }
-                });
-
-                //isCollision(paparazziSprite, celebritySprite);
                 scene.addChild(map);
-                scene.addChild(paparazziSprite);
-                scene.addChild(celebritySprite);
+                for (i = 0; i < pjsList.length; i++) {
+                    scene.addChild(pjsList[i].getSprite());
+                }
                 game.pushScene(scene);
             };
             game.start(); // start your game!
