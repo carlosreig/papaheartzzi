@@ -13,7 +13,12 @@
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = 30;
-            game.preload('misc/tiles.gif', 'misc/walker.gif', 'misc/walker2.gif', 'misc/camera.wav');
+            game.preload('misc/tiles.gif', 
+                         'misc/walker.gif', 
+                         'misc/walker2.gif',
+                         'misc/camera.wav', 
+                         'misc/bgm.wav');
+            var music = 'misc/bgm.wav';
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
@@ -29,6 +34,9 @@
                     console.log("Celebrity sprite: ");
                     console.log(celebritySprite);
                 }
+                // Background music
+                this.assets[music].play();
+                //isCollision(paparazziSprite, celebritySprite);
                 scene.addChild(map);
                 scene.addChild(paparazziSprite);
                 scene.addChild(celebritySprite);

@@ -1,8 +1,7 @@
 function Paparazzi(spriteWidth, spriteHeight) {
 	region = Math.floor(Math.random()*4);
 	image = 'misc/walker.gif';
-	var pj = new Pj(region, spriteWidth, spriteHeight, image
-		);
+	var pj = new Pj(region, spriteWidth, spriteHeight, image);
 
 	this.getSprite = function() {
 		return pj.getSprite();
@@ -47,7 +46,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 			console.log('Paparazzi event: leftbuttondown');
 		}
 	    if (isPositionAvailable((pj.getX()-speed), pj.getY(), true)) {
-	        pj.setX((pj.getX()- speed));
+	        pj.setX((pj.getX()- speed));        
 	    }
 	});
 
@@ -56,7 +55,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 			console.log('Paparazzi event: rightbuttondown');
 		}
 	    if (isPositionAvailable((pj.getX()+speed), pj.getY(), true)) {
-	        pj.setX((pj.getX() + speed));
+	        pj.setX((pj.getX() + speed));     
 	    }
 	});
 

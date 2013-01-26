@@ -47,3 +47,15 @@ function isPositionAvailable(x, y, transform) {
         return true;
     }
 }
+
+/*
+function isCollision(paparazziSprite, celebritySprite) {
+    if (paparazziSprite.intersect(celebritySprite)) {
+        alert("hit!");
+    }
+}
+/*
+function isNearCollision(paparazzi, celebrity) {
+    if(paparazzi.getSprite.within(celebrity.getSprite, 40)) { alert("He's near!"); }
+}
+*/

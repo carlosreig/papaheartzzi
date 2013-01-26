@@ -24,4 +24,5 @@ function Pj(region, spriteWidth, spriteHeight, spriteImage) {
 	this.getY = function() {
 		return this.sprite.y;
 	}
+
 }
