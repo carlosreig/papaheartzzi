@@ -35,7 +35,7 @@ for z in range(numberOfTiles):
 		average = average / (tileSize * tileSize);
 		colisionableMatrix[z][i] = (1, 0) [average > 128];
 
-print "[",;
+print "[";
 for i in range(numberOfTiles):
 	print "[",;
 	
@@ -44,5 +44,8 @@ for i in range(numberOfTiles):
 			print str(int(colisionableMatrix[i][j])) + ", ",;
 		else:
 			print int(colisionableMatrix[i][j]),;
-	print "]";
+	if i != numberOfTiles - 1:
+		print "],",;
+	else:
+		print "]",;
 print "]";
