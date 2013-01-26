@@ -40,19 +40,21 @@ function Celebrity(spriteWidth, spriteHeight) {
 				if (pj.isMoveAllowed('down', speed)) {
 	        		pj.addY(speed);
 	    		}
+	   		    pj.sprite.frame = forwardFrames;
 	    		break;
 	    	// A key
 	    	case 65:
 	   		    if (pj.isMoveAllowed('left', speed)) {
 	   		     	pj.substractX(speed);
 	   		    }
-	   		    
 	   		    pj.sprite.frame = forwardFrames;
 	   		    break;
 	   		// D key
 	   		case 68:
 	   		    if (pj.isMoveAllowed('right', speed)) {
 	   			    pj.addX(speed);
+	   			}
+	   		    pj.sprite.frame = forwardFrames;
 	   		// W key
 	   		case 87:
 	   		    if (pj.isMoveAllowed('up', speed)) {

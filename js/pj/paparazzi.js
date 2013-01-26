@@ -32,27 +32,36 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	    if (pj.isMoveAllowed('down', speed)) {
 	        pj.addY(speed);
 	    }
+	    pj.sprite.frame = forwardFrames;
 	});
 
 	game.addEventListener('upbuttondown', function() {
 	    if (pj.isMoveAllowed('up', speed)) {
 	        pj.substractY(speed);
 	    }
+	    pj.sprite.frame = forwardFrames;
 	});
 
 	game.addEventListener('leftbuttondown', function() {
 	    if (pj.isMoveAllowed('left', speed)) {
 	        pj.substractX(speed);
 	    }
+	    pj.sprite.frame = forwardFrames;
 	});
 
 	game.addEventListener('rightbuttondown', function() {
 	    if (pj.isMoveAllowed('right', speed)) {
 	        pj.addX(speed);
 	    }
+	    pj.sprite.frame = forwardFrames;
 	});
 
-	game.addEventListener('abuttondown', function(e) {
-	    game.assets['misc/camera.wav'].play();
+	document.addEventListener('keydown', function(e) {
+		switch(e.keyCode)
+		{
+			case '':
+			    game.assets['misc/camera.wav'].play();
+			    break;
+		}
 	});
 }
