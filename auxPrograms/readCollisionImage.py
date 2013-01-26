@@ -5,7 +5,7 @@ import sys;
 DEFAULT_TILE_SIZE = 16
 
 if len(sys.argv) < 2:
-	sys.exit("Use: readCollisionImage.php imagecolision.png [tileSize]" + "\n");
+	sys.exit("Use: readCollisionImage.py imagecolision.png [tileSize]" + "\n");
 	
 try:
 	im = Image.open(sys.argv[1]);
