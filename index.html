@@ -20,8 +20,11 @@
                          'images/paparazzi.png', 
                          'images/celebrity.png',
                          'misc/camera.wav', 
-                         'misc/bgm.wav');
+                         'misc/bgm.wav',
+                         'misc/heartbeat.wav'
+                         );
             var music = 'misc/bgm.wav';
+            var heartbeat = 'misc/heartbeat.wav';
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
@@ -37,6 +40,11 @@
                 if (isMusicEnabled) {
                     this.assets[music].play();
                 }
+
+                // Heartbreak music
+                game.addEventListener('enterframe', function() {
+                    this.assets[music].play();
+                });                
 
                 scene.addChild(map);
                 for (i = 0; i < pjsList.length; i++) {
