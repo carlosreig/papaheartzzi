@@ -59,14 +59,15 @@ except IOError:
 if im.size[0] != im.size[1]:
 	sys.exit("The number of pixels of width is not the same as the height. The map must be square" + "\n");
 
-numberOfTiles = int(im.size[0] / tileSize);
+numberOfTilesHorizontal = int(im.size[0] / tileSize);
+numberOfTilesVertical = int(im.size[0] / tileSize);
 
 tileList = TileList();
 
-tileMapMatrix = numpy.empty((numberOfTiles, numberOfTiles));
+tileMapMatrix = numpy.empty((numberOfTilesHorizontal, numberOfTilesHorizontal));
 pixels = im.load();
-for row in range(numberOfTiles):
-	for col in range(numberOfTiles):
+for row in range(numberOfTilesHorizontal):
+	for col in range(numberOfTilesVertical):
 		averageColor = (0, 0, 0);
 		
 		for i in range(tileSize):
@@ -89,17 +90,17 @@ for item in tileList.list:
 			
 outputImage.save(outputFile);
 
-print "[";
-for i in range(numberOfTiles):
+print "var map_matrix = [";
+for i in range(numberOfTilesHorizontal):
 	print "[",;
 	
-	for j in range(numberOfTiles):
-		if j != numberOfTiles - 1:
+	for j in range(numberOfTilesVertical):
+		if j != numberOfTilesVertical - 1:
 			print str(int(tileMapMatrix[i][j])) + ", ",;
 		else:
 			print int(tileMapMatrix[i][j]),;
-	if i != numberOfTiles - 1:
+	if i != numberOfTilesHorizontal - 1:
 		print "], ";
 	else:
 		print "]",;
-print "]";
+print "];";

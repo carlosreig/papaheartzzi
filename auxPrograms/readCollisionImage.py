@@ -20,12 +20,13 @@ else:
 if im.size[0] != im.size[1]:
 	sys.exit("The number of pixels of width is not the same as the height. The map must be square" + "\n");
 
-numberOfTiles = int(im.size[0] / tileSize);
-colisionableMatrix = numpy.empty((numberOfTiles, numberOfTiles));
+numberOfTilesHorizontal = int(im.size[0] / tileSize);
+numberOfTilesVertical = int(im.size[1] / tileSize);
+colisionableMatrix = numpy.empty((numberOfTilesHorizontal, numberOfTilesHorizontal));
 
 pixels = im.load();
-for z in range(numberOfTiles):
-	for i in range(numberOfTiles):
+for z in range(numberOfTilesHorizontal):
+	for i in range(numberOfTilesVertical):
 		average = 0;
 		for j in range(tileSize):
 			for k in range(tileSize):
@@ -35,17 +36,17 @@ for z in range(numberOfTiles):
 		average = average / (tileSize * tileSize);
 		colisionableMatrix[z][i] = (1, 0) [average > 128];
 
-print "[";
-for i in range(numberOfTiles):
+print "var colMatrix = [";
+for i in range(numberOfTilesHorizontal):
 	print "[",;
 	
-	for j in range(numberOfTiles):
-		if j != numberOfTiles - 1:
+	for j in range(numberOfTilesVertical):
+		if j != numberOfTilesVertical - 1:
 			print str(int(colisionableMatrix[i][j])) + ", ",;
 		else:
 			print int(colisionableMatrix[i][j]),;
-	if i != numberOfTiles - 1:
+	if i != numberOfTilesHorizontal - 1:
 		print "],",;
 	else:
 		print "]",;
-print "]";
+print "];";

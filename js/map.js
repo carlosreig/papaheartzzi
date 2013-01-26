@@ -1,8 +1,8 @@
 function getGameMap() {
     map = new Map(tile_size, tile_size);
-    map.image = game.assets['misc/tiles.gif'];
+    map.image = game.assets['misc/tileMap.png'];
     map.loadData(map_matrix);
-    map.collisionData = coll;
+    map.collisionData = colMatrix;
     return map;
 }
 
@@ -10,6 +10,7 @@ function getAvailablePosition(positions) {
     var x = Math.floor(Math.random()*horizontal_tiles);
     var y = Math.floor(Math.random()*vertical_tiles);
     var position = Array();
+    
     if (isPositionAvailable(positions, x, y)) {
         position['width'] = ((x)*tile_size)+3;
         position['height'] = ((y)*tile_size)-6;
@@ -17,6 +18,7 @@ function getAvailablePosition(positions) {
     else {
         position = getAvailablePosition(positions);
     }
+    
     return position;
 }
 
@@ -28,13 +30,13 @@ function isPositionAvailable(x, y, transform) {
     if (debug) {
         //console.log('Map function isPositionAvailable');
         debugVars = [];
-        debugVars[0] = coll;
+        debugVars[0] = colMatrix;
         debugVars[1] = x;
         debugVars[2] = y;
         debugVars[3] = transform;
         //console.log(debugVars);
     }
-    if (y > (vertical_tiles - 1) || y < 0 || x > (horizontal_tiles - 1) || x < 0 || coll[y][x] > 0) {
+    if (y > (vertical_tiles - 1) || y < 0 || x > (horizontal_tiles - 1) || x < 0 || colMatrix[y][x] > 0) {
         if (debug) {
             console.log('Position not available');
         }
