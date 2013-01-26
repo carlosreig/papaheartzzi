@@ -11,7 +11,7 @@ var horizontalTiles =  width / tileSize;
 var verticalTiles = height / tileSize;
 
 // Set to true to enable debugging
-var debug = true;
+var debug = false;
 
 // Enable for background music
 var isMusicEnabled = false;
