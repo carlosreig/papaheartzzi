@@ -1,6 +1,6 @@
 // Global variables
-var width = 800;
-var height = 600;
+var width = 150;
+var height = 150;
 var tileSize = 10;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
