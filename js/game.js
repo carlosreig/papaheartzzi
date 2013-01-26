@@ -1,22 +1,22 @@
 // Global variables
 var width = 800;
 var height = 600;
-var tile_size = 20;
+var tileSize = 20;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
 var speed = 20;
 
 // Calculated variables
-var horizontal_tiles = width / tile_size;
-var vertical_tiles = height / tile_size;
+var horizontalTiles = width / tileSize;
+var verticalTiles = height / tileSize;
 
-// World map and collisions map
+// World map and collisionsisions map
 var map_matrix = [];
-var coll = [];
-for (var i = 0; i < vertical_tiles; i++) {
+var collisions = [];
+for (var i = 0; i < verticalTiles; i++) {
     var row = [];
     var blocks = [];
-    for (var y = 0; y < horizontal_tiles; y++) {
+    for (var y = 0; y < horizontalTiles; y++) {
         var rand = Math.floor(Math.random()*4);
         row[y] = rand;
         if (rand != 1) {
@@ -27,13 +27,8 @@ for (var i = 0; i < vertical_tiles; i++) {
         }
     }
     map_matrix[i] = row;
-    coll[i] = blocks;
+    collisions[i] = blocks;
 }
-
-// Set up new key events
-enchant.ENV.KEY_BIND_TABLE[32] = 'o';
-enchant.Event.S_BUTTON_DOWN = 'obuttondown';
-console.log(enchant.ENV.KEY_BIND_TABLE);
 
 // Set to true to enable debugging
 var debug = true;
