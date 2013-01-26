@@ -16,7 +16,7 @@
             var game = new Game(width, height); // game stage
             game.fps = 30;
             game.preload('images/tileMap.png', 
-                         'misc/walker.gif', 
+                         'images/paparazzi.png', 
                          'images/celebrity.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav');
@@ -24,7 +24,7 @@
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
-                var paparazzi = new Paparazzi(14, 26);
+                var paparazzi = new Paparazzi(10, 30);
                 paparazziSprite = paparazzi.getSprite();
                 if (debug) {
                     console.log("Paparazzi sprite: ");
