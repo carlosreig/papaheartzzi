@@ -1,7 +1,8 @@
 function Pj(region, spriteWidth, spriteHeight, spriteImage) {
 	this.sprite = new Sprite(spriteWidth, spriteHeight);
 	this.sprite.image = game.assets[spriteImage];
-	this.position = getAvailablePosition(colMatrix);
+	this.position = getAvailablePosition(collisions);
+	
 	this.sprite.x = this.position['width'];
 	this.sprite.y = this.position['height'];
 

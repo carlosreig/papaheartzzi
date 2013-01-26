@@ -20,9 +20,7 @@
                          'misc/walker2.gif',
                          'misc/camera.wav', 
                          'misc/bgm.wav');
-            if (isMusicEnabled) {
-                var music = 'misc/bgm.wav';
-            }
+            var music = 'misc/bgm.wav';
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
@@ -39,7 +37,10 @@
                     console.log(celebritySprite);
                 }
                 // Background music
-                this.assets[music].play();
+
+                if (isMusicEnabled) {
+                    this.assets[music].play();
+                }
                 //isCollision(paparazziSprite, celebritySprite);
                 scene.addChild(map);
                 scene.addChild(paparazziSprite);

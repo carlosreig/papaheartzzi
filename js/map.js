@@ -2,7 +2,7 @@ function getGameMap() {
     map = new Map(tileSize, tileSize);
     map.image = game.assets['misc/tileMap.png'];
     map.loadData(map_matrix);
-    map.collisionData = colMatrix;
+    map.collisionData = collisions;
     return map;
 }
 
