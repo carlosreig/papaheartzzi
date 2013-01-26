@@ -15,6 +15,7 @@ enchant.ENV.KEY_BIND_TABLE[32] = 'o';
 enchant.Event.S_BUTTON_DOWN = 'obuttondown';
 console.log(enchant.ENV.KEY_BIND_TABLE);
 
+
 // Set to true to enable debugging
 var debug = true;
 
