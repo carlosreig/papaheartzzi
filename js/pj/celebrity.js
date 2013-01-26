@@ -48,34 +48,4 @@ function Celebrity(spriteWidth, spriteHeight) {
 	   		    break;
 	    }
     });
-
-/*
-	game.addEventListener('sbuttondown', function() {
-	    if (isPositionAvailable(pj.getX(), (pj.getY()+speed), true)) {
-	        pj.setY((pj.getY() + speed));
-	    }
-	});
-	game.addEventListener('wbuttondown', function() {
-	    if (isPositionAvailable(pj.getX(), (pj.getY()-speed), true)) {
-	        pj.setY((pj.getY() - speed));
-	    }
-	});
-	game.addEventListener('abuttondown', function() {
-	    if (isPositionAvailable((pj.getX()-speed), pj.getY(), true)) {
-	        pj.setX((pj.getX() - speed));
-	    }
-	});
-	game.addEventListener('bbuttondown', function() {
-	    if (isPositionAvailable((pj.getX()+speed), pj.getY(), true)) {
-	        pj.setX((pj.getX() + speed));
-	    }
-	});
-
-	/*game.addEventListener('keydown', function(e) {
-        if (debug) {
-			console.log("Paparazzi keydown event: ");
-		    console.log(e.keyCode);
-		}
-	    game.assets['misc/camera.wav'].play();
-	});*/
 }

@@ -28,13 +28,13 @@ function isPositionAvailable(x, y, transform) {
         y = (y + 6) / tile_size;
     }
     if (debug) {
-        //console.log('Map function isPositionAvailable');
+        console.log('Map function isPositionAvailable');
         debugVars = [];
         debugVars[0] = colMatrix;
         debugVars[1] = x;
         debugVars[2] = y;
         debugVars[3] = transform;
-        //console.log(debugVars);
+        console.log(debugVars);
     }
     if (y > (vertical_tiles - 1) || y < 0 || x > (horizontal_tiles - 1) || x < 0 || colMatrix[y][x] > 0) {
         if (debug) {
@@ -44,7 +44,7 @@ function isPositionAvailable(x, y, transform) {
     }
     else {
         if (debug) {
-            //console.log('Position is available');
+            console.log('Position is available');
         }
         return true;
     }
@@ -57,7 +57,9 @@ function isCollision(paparazziSprite, celebritySprite) {
     }
 }
 /*
-function isNearCollision(paparazzi, celebrity) {
-    if(paparazzi.getSprite.within(celebrity.getSprite, 40)) { alert("He's near!"); }
+function isNearCollision(paparazzi, celebrity, ) {
+    if(paparazzi.getSprite.within(celebrity.getSprite, 40)) {
+        alert("He's near!");
+    }
 }
 */
