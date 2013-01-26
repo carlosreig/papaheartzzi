@@ -57,6 +57,22 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	    }
 	    pj.sprite.frame = pj.forwardFrames;
 	});
+	
+	game.addEventListener('downbuttonup', function() {
+	    pj.sprite.frame = [];
+	});
+
+	game.addEventListener('upbuttonup', function() {
+		pj.sprite.frame = [];
+	});
+
+	game.addEventListener('leftbuttonup', function() {
+	   pj.sprite.frame = [];
+	});
+
+	game.addEventListener('rightbuttonup', function() {
+	    pj.sprite.frame = [];
+	});
 
 	document.addEventListener('keydown', function(e) {
 		switch(e.keyCode)
