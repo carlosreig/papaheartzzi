@@ -4,7 +4,7 @@ var height = 150;
 var tileSize = 10;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
-var speed = 20;
+var speed = 10;
 
 // Calculated variables
 var horizontalTiles =  width / tileSize;

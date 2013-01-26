@@ -12,8 +12,8 @@ function getAvailablePosition() {
     var position = Array();
 
     if (isPositionAvailable(x, y)) {
-        position['width'] = ((x)*tileSize)+3;
-        position['height'] = ((y)*tileSize)-6;
+        position['width'] = ((x)*tileSize);
+        position['height'] = ((y)*tileSize);
     }
     else {
         position = getAvailablePosition();
@@ -24,8 +24,8 @@ function getAvailablePosition() {
 
 function isPositionAvailable(x, y, transform) {
     if (transform == true) {
-        x = (x - 3) / tileSize;
-        y = (y + 6) / tileSize;
+        x = (x) / tileSize;
+        y = (y) / tileSize;
     }
     if (debug) {
         console.log('Map function isPositionAvailable');
