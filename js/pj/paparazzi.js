@@ -2,6 +2,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	region = Math.floor(Math.random()*4);
 	image = 'misc/walker.gif';
 	var pj = new Pj(region, spriteWidth, spriteHeight, image);
+	pj.setId('paparazzi');
 
 	this.getSprite = function() {
 		return pj.getSprite();
@@ -23,47 +24,35 @@ function Paparazzi(spriteWidth, spriteHeight) {
 		return pj.getY();
 	}
 
+	this.getId = function() {
+		return pj.getId();
+	}
+
 	game.addEventListener('downbuttondown', function() {
-		if (debug) {
-			console.log('Paparazzi event: downbuttondown');
-		}
-	    if (isPositionAvailable(pj.getX(), (pj.getY()+speed), true)) {
-	        pj.setY((pj.getY() + speed));
+	    if (pj.isMoveAllowed('down', speed)) {
+	        pj.addY(speed);
 	    }
 	});
 
 	game.addEventListener('upbuttondown', function() {
-		if (debug) {
-			console.log('Paparazzi event: upbuttondown');
-		}
-	    if (isPositionAvailable(pj.getX(), (pj.getY()-speed), true)) {
-	        pj.setY((pj.getY() - speed));
+	    if (pj.isMoveAllowed('up', speed)) {
+	        pj.substractY(speed);
 	    }
 	});
 
 	game.addEventListener('leftbuttondown', function() {
-		if (debug) {
-			console.log('Paparazzi event: leftbuttondown');
-		}
-	    if (isPositionAvailable((pj.getX()-speed), pj.getY(), true)) {
-	        pj.setX((pj.getX()- speed));        
+	    if (pj.isMoveAllowed('left', speed)) {
+	        pj.substractX(speed);
 	    }
 	});
 
 	game.addEventListener('rightbuttondown', function() {
-		if (debug) {
-			console.log('Paparazzi event: rightbuttondown');
-		}
-	    if (isPositionAvailable((pj.getX()+speed), pj.getY(), true)) {
-	        pj.setX((pj.getX() + speed));     
+	    if (pj.isMoveAllowed('right', speed)) {
+	        pj.addX(speed);
 	    }
 	});
 
 	game.addEventListener('abuttondown', function(e) {
-		if (debug) {
-			console.log("Paparazzi keydown event: ");
-		    console.log(e.keyCode);
-		}
 	    game.assets['misc/camera.wav'].play();
 	});
 }

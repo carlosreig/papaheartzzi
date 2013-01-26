@@ -2,6 +2,8 @@
 <html>
     <head>
         <script type="text/javascript" language="javascript" src="js/enchant.js"></script>
+        
+        <script type="text/javascript" language="javascript" src="js/mapMatrix.js"></script>
         <script type="text/javascript" language="javascript" src="js/game.js"></script>
         <script type="text/javascript" language="javascript" src="js/map.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/pj.js"></script>
@@ -13,7 +15,7 @@
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = 30;
-            game.preload('misc/tiles.gif', 
+            game.preload('misc/tileMap.png', 
                          'misc/walker.gif', 
                          'misc/walker2.gif',
                          'misc/camera.wav', 
