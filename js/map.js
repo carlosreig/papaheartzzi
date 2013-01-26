@@ -47,16 +47,16 @@ function isPositionAvailable(x, y, transform) {
     }
 }
 
-/*
-function isCollision(paparazziSprite, celebritySprite) {
-    if (paparazziSprite.intersect(celebritySprite)) {
-        alert("hit!");
+function hasCollided(firstSprite, secondSprite) {
+    if (firstSprite.intersect(secondSprite)) {
+        return true;
     }
+    return false;
 }
-/*
-function isNearCollision(paparazzi, celebrity, farAway) {
-    if(paparazzi.getSprite.within(celebrity.getSprite, farAway)) {
-        alert("He's near!");
+
+function isNearCollision(firstSprite, secondSprite, tilesAway) {
+    if(firstSprite.getSprite.within(secondSprite.getSprite, tilesAway)) {
+        return true;
     }
+    return false;
 }
-*/

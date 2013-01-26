@@ -39,6 +39,13 @@
                 if (isMusicEnabled) {
                     this.assets[music].play();
                 }
+
+                game.addEventListener('enterframe', function() {
+                    if (hasCollided(paparazziSprite, celebritySprite)) {
+                        console.log('Collision!');
+                    }
+                });
+
                 //isCollision(paparazziSprite, celebritySprite);
                 scene.addChild(map);
                 scene.addChild(paparazziSprite);
