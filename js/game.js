@@ -2,6 +2,7 @@
 var width = 800;
 var height = 600;
 var tile_size = 20;
+
 // TODO: FIX FOR LOWER SPEEDS!!!
 var speed = 20;
 
@@ -36,3 +37,6 @@ console.log(enchant.ENV.KEY_BIND_TABLE);
 
 // Set to true to enable debugging
 var debug = true;
+
+// Enable for background music
+var isMusicEnabled = false;

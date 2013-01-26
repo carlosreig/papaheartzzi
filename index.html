@@ -18,7 +18,9 @@
                          'misc/walker2.gif',
                          'misc/camera.wav', 
                          'misc/bgm.wav');
-            var music = 'misc/bgm.wav';
+            if (isMusicEnabled) {
+                var music = 'misc/bgm.wav';
+            }
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
