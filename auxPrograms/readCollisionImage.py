@@ -29,9 +29,11 @@ for row in range(numberOfTilesVertical):
 			for j in range(tileSize):
 				pixel = pixels[col * tileSize + j, row * tileSize + i];
 				average += (pixel[0] + pixel[1] + pixel[2]) / 3;
-	
-		average = average / (tileSize * tileSize);
-		colisionableMatrix[row][col] = (1, 0) [average < 128];
+				
+		average = average / (tileSize * tileSize);		
+		if row == 25 and col == 46:
+			print average;
+		colisionableMatrix[row][col] = (1, 0) [average > 128];
 
 print "var collisions = [";
 for i in range(numberOfTilesVertical):
