@@ -29,7 +29,6 @@ function Celebrity() {
 	}
 
 	document.addEventListener('keydown', function(e) {
-		console.log(e.keyCode);
 		switch(e.keyCode)
 		{
 			// S key

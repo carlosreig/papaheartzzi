@@ -12,6 +12,7 @@ function getCityScene() {
 		var npc = new Npc(0, i);
 		pjsList.push(npc);
 	}
+
     pjsList.push(celebrity);
     pjsList.push(paparazzi);
 
