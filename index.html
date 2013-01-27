@@ -9,6 +9,7 @@
         <script type="text/javascript" language="javascript" src="js/pj/pj.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/paparazzi.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/celebrity.js"></script>
+        <script type="text/javascript" language="javascript" src="js/overrides.js"></script>
     </head>
     <body style="margin:0; padding: 0;">
         <script>
@@ -19,8 +20,11 @@
                          'images/paparazzi.png', 
                          'images/celebrity.png',
                          'misc/camera.wav', 
-                         'misc/bgm.wav');
+                         'misc/bgm.wav',
+                         'misc/heartbeat.wav'
+                         );
             var music = 'misc/bgm.wav';
+            var heartbeat = 'misc/heartbeat.wav';
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
@@ -31,10 +35,16 @@
                 pjsList[0] = paparazzi;
                 pjsList[1] = celebrity;
 
-
                 // Background music
                 if (isMusicEnabled) {
                     this.assets[music].play();
+                }
+
+                // Heartbreak music
+                if (isMusicEnabled) {
+                    game.addEventListener('enterframe', function() {
+                        this.assets[heartbeat].play();
+                    });
                 }
 
                 scene.addChild(map);
@@ -43,7 +53,7 @@
                 }
                 game.pushScene(scene);
             };
-            game.start(); // start your game!
+            game.start(); // start the game!
         </script>
     </body>
 </html>

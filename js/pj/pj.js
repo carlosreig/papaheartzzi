@@ -139,7 +139,7 @@ function Pj(region, spriteWidth, spriteHeight, spriteImage) {
 }
 
 function hasCollided(firstSprite, secondSprite) {
-    if (firstSprite.intersect(secondSprite)) {
+    if (customIntersect(firstSprite, secondSprite)) {
         return true;
     }
     return false;
