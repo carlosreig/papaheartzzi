@@ -1,15 +1,16 @@
 import sys;
 import Image;
 import numpy;
+import md5;
 
 class TileListElement:
-	def __init__(self, position, averageColor, positionInList):
-		self.averageColor = averageColor;
+	def __init__(self, position, md5Hash, positionInList):
+		self.md5Hash = md5Hash;
 		self.tilePosition = position
 		self.itemPosition = positionInList;
 	
-	def isEqual (self, color):
-		if color[0] == self.averageColor[0] and color[1] == self.averageColor[2] and color[2] == self.averageColor[2]:
+	def isEqual (self, md5Hash):
+		if self.md5Hash == md5Hash:
 			return True;
 		else:
 			return False;
@@ -18,15 +19,15 @@ class TileList:
 	def __init__(self):
 		self.list = []
 	
-	def hasColor(self, color):
+	def hasTile(self, md5Hash):
 		for i in self.list:
-			if i.isEqual(color):
+			if i.isEqual(md5Hash):
 				return True;
 		return False;
 	
-	def getPositionOfTile(self, color):
+	def getPositionOfTile(self, md5Hash):
 		for i in self.list:
-			if i.isEqual(color):
+			if i.isEqual(md5Hash):
 				return i.itemPosition;
 	
 	def addElement(self, position, color):
@@ -56,50 +57,51 @@ try:
 except IOError:
 	sys.exit("The image " + sys.argv[1] + " is not found in the system.");
 
-if im.size[0] != im.size[1]:
-	sys.exit("The number of pixels of width is not the same as the height. The map must be square" + "\n");
-
 numberOfTilesHorizontal = int(im.size[0] / tileSize);
-numberOfTilesVertical = int(im.size[0] / tileSize);
+numberOfTilesVertical = int(im.size[1] / tileSize);
 
 tileList = TileList();
 
-tileMapMatrix = numpy.empty((numberOfTilesHorizontal, numberOfTilesHorizontal));
+tileMapMatrix = numpy.empty((numberOfTilesVertical, numberOfTilesHorizontal));
+
 pixels = im.load();
-for row in range(numberOfTilesHorizontal):
-	for col in range(numberOfTilesVertical):
-		averageColor = (0, 0, 0);
+
+for row in range(numberOfTilesVertical):
+	for col in range(numberOfTilesHorizontal):
+		md5Hasher = md5.new();
 		
 		for i in range(tileSize):
 			for j in range(tileSize):
-				pixel = pixels[row * tileSize + i, col * tileSize + j];
-				averageColor = tuple(sum(x) for x in zip(averageColor, pixel));
-		averageColor = tuple(x / (tileSize * tileSize) for x in averageColor);
+				pixel = pixels[col * tileSize + j, row * tileSize + i];
+				tuple(md5Hasher.update(str(x)) for x in pixel);
 		
-		if not tileList.hasColor(averageColor):
-			tileList.addElement((row, col), averageColor);
+		md5Hash = md5Hasher.digest();
+		if not tileList.hasTile(md5Hash):
+			tileList.addElement((row, col), md5Hash);
 			
-		tileMapMatrix[row][col] = tileList.getPositionOfTile(averageColor);
+		tileMapMatrix[row][col] = tileList.getPositionOfTile(md5Hash);
 
 outputImage = Image.new("RGB", (len(tileList.list) * tileSize, tileSize), "black");
 
 for item in tileList.list:
 	for i in range(tileSize):
 		for j in range(tileSize):
-			outputImage.putpixel((item.itemPosition * tileSize + i, j), pixels[item.tilePosition[0] * tileSize + i, item.tilePosition[1] * tileSize + j]);
+			outputCoordinates = (item.itemPosition * tileSize + j, i);
+			inputCoordinates = (item.tilePosition[1] * tileSize + j, item.tilePosition[0] * tileSize + i);
+			outputImage.putpixel(outputCoordinates, pixels[inputCoordinates]);
 			
 outputImage.save(outputFile);
 
 print "var map_matrix = [";
-for i in range(numberOfTilesHorizontal):
+for i in range(numberOfTilesVertical):
 	print "[",;
 	
-	for j in range(numberOfTilesVertical):
-		if j != numberOfTilesVertical - 1:
+	for j in range(numberOfTilesHorizontal):
+		if j != numberOfTilesHorizontal - 1:
 			print str(int(tileMapMatrix[i][j])) + ", ",;
 		else:
 			print int(tileMapMatrix[i][j]),;
-	if i != numberOfTilesHorizontal - 1:
+	if i != numberOfTilesVertical - 1:
 		print "], ";
 	else:
 		print "]",;
