@@ -1,6 +1,5 @@
 function getGameMap() {
     map = new Map(tileSize, tileSize);
-    randomMap = Math.floor(Math.random()*2)+1;
     map.image = game.assets['images/tileMap' + randomMap + '.png'];
     switch(randomMap) {
         case 1:
@@ -63,4 +62,5 @@ function mapReset() {
     score = 0;
     timer = 0;
     frame = 0;
+    randomMap = Math.floor(Math.random()*2)+1;
 }

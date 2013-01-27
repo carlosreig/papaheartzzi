@@ -23,6 +23,7 @@ var timer = 0;
 var frameCount = 0;
 var score = 0;
 var timerOut = 30;
+var randomMap = Math.floor(Math.random()*2)+1;
 
 enchant.ENV.KEY_BIND_TABLE['32'] = 'a';
 
