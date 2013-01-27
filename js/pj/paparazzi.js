@@ -40,7 +40,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	        pj.substractY(speed);
 	    }
 
-	    pj.sprite.frame = pj.forwardFrames;
+	    pj.sprite.frame = pj.backwardFrames;
 	});
 
 	game.addEventListener('leftbuttondown', function() {
@@ -74,7 +74,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	});
 
 	game.addEventListener('upbuttonup', function() {
-		pj.sprite.frame = [];
+		pj.sprite.frame = [6];
 	});
 
 	game.addEventListener('leftbuttonup', function() {

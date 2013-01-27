@@ -70,8 +70,10 @@ function Celebrity(spriteWidth, spriteHeight) {
 			case 83: //down
 		    case 65: //left
 	   		case 68://right
-	   		case 87://top
 	   			pj.sprite.frame = [];
+	   			break;
+	   		case 87://top
+	   			pj.sprite.frame = [5];
 	    }
     });
     

@@ -1,10 +1,12 @@
 // Global variables
-var width = 150;
-var height = 150;
-var tileSize = 10;
+
+var width = 800;
+var height = 600;
+var tileSize = 20;
 var fps = 30;
+
 // TODO: FIX FOR LOWER SPEEDS!!!
-var speed = 10;
+var speed = 20;
 
 // Calculated variables
 var horizontalTiles =  width / tileSize;
