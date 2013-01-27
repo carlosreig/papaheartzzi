@@ -56,6 +56,13 @@ function Pj(region, spriteImage) {
 	this.getId = function() {
 		return this.id;
 	}
+	
+	this.getActualPositionInTile = function() {
+		tileHorizontal = this.getX() / tileSize;
+		tileVertical = this.getY() / tileSize;
+		
+		return [tileHorizontal, tileVertical];
+	}
 
 	this.isMoveAllowed = function(direction, movement) {
 		for (i = 0; i < pjsList.length; i++) {
