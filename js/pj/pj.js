@@ -1,6 +1,12 @@
 function Pj(region, spriteImage) {
-	this.spriteWidth = 20;
-	this.spriteHeight = 60;
+	if (spriteImage == 'images/npc2.png') {
+		this.spriteWidth = 15;
+		this.spriteHeight = 15;
+	}
+	else {
+		this.spriteWidth = 20;
+		this.spriteHeight = 60;
+	}
 	this.sprite = new Sprite(this.spriteWidth, this.spriteHeight);
 	this.sprite.image = game.assets[spriteImage];
 
@@ -11,7 +17,7 @@ function Pj(region, spriteImage) {
 	this.sprite.x = this.position['width'];
 	this.sprite.y = this.position['height'] - (this.spriteHeight-tileSize);
 
-	this.id = 'pj';
+	this.id = 'pj' + spriteImage;
 
 	this.getSprite = function() {
 		return this.sprite;
@@ -33,20 +39,20 @@ function Pj(region, spriteImage) {
 		return this.sprite.y;
 	}
 
-	this.addX = function(movement) {
-		this.sprite.x += movement;
+	this.addX = function(speed) {
+		this.sprite.x += speed;
 	}
 
-	this.addY = function(movement) {
-		this.sprite.y += movement;
+	this.addY = function(speed) {
+		this.sprite.y += speed;
 	}
 
-	this.substractX = function(movement) {
-		this.sprite.x -= movement;
+	this.substractX = function(speed) {
+		this.sprite.x -= speed;
 	}
 
-	this.substractY = function(movement) {
-		this.sprite.y -= movement;
+	this.substractY = function(speed) {
+		this.sprite.y -= speed;
 	}
 
 	this.setId = function(id) {
@@ -59,27 +65,27 @@ function Pj(region, spriteImage) {
 	
 	this.getActualPositionInTile = function() {
 		tileHorizontal = this.getX() / tileSize;
-		tileVertical = this.getY() / tileSize;
+		tileVertical = this.getY() + this.spriteHeight - tileSize / tileSize;
 		
 		return [tileHorizontal, tileVertical];
 	}
 
-	this.isMoveAllowed = function(direction, movement) {
-		for (i = 0; i < pjsList.length; i++) {
-			otherPj = pjsList[i];
+	this.isMoveAllowed = function(moveDirection) {
+		for (pjNum = 0; pjNum < pjsList.length; pjNum++) {
+			otherPj = pjsList[pjNum];
 			if (this.id != otherPj.getId()) {
-				switch (direction) {
+				switch (moveDirection) {
 					case 'up':
-						this.substractY(movement);
+						this.substractY(speed);
 						break;
 					case 'down':
-						this.addY(movement);
+						this.addY(speed);
 						break;
 					case 'left':
-						this.substractX(movement);
+						this.substractX(speed);
 						break;
 					case 'right':
-						this.addX(movement);
+						this.addX(speed);
 						break;
 				}
 				if (hasCollided(this.getSprite(), otherPj.getSprite())) {
@@ -87,39 +93,42 @@ function Pj(region, spriteImage) {
 						console.log('Has collided with other sprite:');
 						console.log(otherPj.getId());
 					}
-					switch (direction) {
+					if (otherPj.getId() == 'npc6') {
+						game.assets[sounds['dog']].play();
+					}
+					switch (moveDirection) {
 						case 'up':
-							this.addY(movement);
+							this.addY(speed);
 							break;
 						case 'down':
-							this.substractY(movement);
+							this.substractY(speed);
 							break;
 						case 'left':
-							this.addX(movement);
+							this.addX(speed);
 							break;
 						case 'right':
-							this.substractX(movement);
+							this.substractX(speed);
 							break;
 					}
 					return false;
 				}
-				switch (direction) {
+				switch (moveDirection) {
 					case 'up':
-						this.addY(movement);
+						this.addY(speed);
 						break;
 					case 'down':
-						this.substractY(movement);
+						this.substractY(speed);
 						break;
 					case 'left':
-						this.addX(movement);
+						this.addX(speed);
 						break;
 					case 'right':
-						this.substractX(movement);
+						this.substractX(speed);
 						break;
 				}
 			}
 		}
-		switch(direction) {
+		switch(moveDirection) {
 			case 'up':
 				if (!isPositionAvailable(this.getX(), (this.getY()+(this.spriteHeight-tileSize)-speed), true)) {
 					return false;
@@ -203,4 +212,13 @@ function deleteCelebrity(celebPosition) {
 		pjsList[celebPosition] = temp;
 		pjsList.pop();
 	}
+}
+
+function getOppositeMovement(movementDirection) {
+	opposites = [];
+	opposites['left'] = 'right';
+	opposites['right'] = 'left';
+	opposites['up'] = 'down';
+	opposites['down'] = 'up';
+	return opposites[movementDirection];
 }

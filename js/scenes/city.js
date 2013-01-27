@@ -1,17 +1,17 @@
-
 function getCityScene() {
     city = new Scene();
     var celebrity = new Celebrity();
     var paparazzi = new Paparazzi();
 
-    pjsList[0] = celebrity;
-    pjsList[1] = paparazzi;
-    
 	//npcs here
-	for (var i = 0; i < 3; i++) {
-		var npc = new Npc(0, i);
+	for (var i = 0; i < 6; i++) {
+		var npc = new Npc(Math.floor(Math.random()*2), i);
 		pjsList.push(npc);
 	}
+    npc = new Npc(2, pjsList.length);
+    console.log(npc.getId());
+    pjsList.push(npc);
+    console.log(npc);
 
     pjsList.push(celebrity);
     pjsList.push(paparazzi);
@@ -27,13 +27,8 @@ function getCityScene() {
             timer += 1;
         }
 
-        if (isMusicEnabled) {
-            if ((timer % 88) == 0) {
-                game.assets[sounds['bgm']].play();
-            }
-        }
-
-        if ((timer > 0 && (timer % 30) == 0) || score == 1) {
+        if ((timer > 0 && (timer % timerOut) == 0) || score == 1) {
+            game.assets[sounds['bgm']].stop();
             scoreScene = getScoreScene();
             game.pushScene(scoreScene);  
         }

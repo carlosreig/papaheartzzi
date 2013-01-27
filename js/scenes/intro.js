@@ -1,43 +1,37 @@
 function getIntroScene() {
 	intro = new Scene();
+
+	score = 0;
 	// Background image
 	background = new Sprite(width, height);
-	background.image = game.assets['images/introbackground.png'];
+	background.image = game.assets['images/inicio.png'];
 	background.x = 0;
 	background.y = 0;
 	intro.addChild(background);
 
-	// Logo
-	logo = new Sprite(724, 110);
-	logo.image = game.assets['images/logo.png'];
-	logo.x = 43;
-	logo.y = 100;
-	intro.addChild(logo);
-
-	startButton = new Sprite(200, 200);
-	startButton.image = game.assets['images/start.png'];
-	startButton.x = 150;
-	startButton.y = 300;
+	startButton = new Sprite(100, 45);
+	startButton.image = game.assets['images/bot_start.png'];
+	startButton.x = 610;
+	startButton.y = 430;
 	intro.addChild(startButton);
 
-	creditsButton = new Sprite(200, 200);
-	creditsButton.image = game.assets['images/button.png'];
-	creditsButton.x = 450;
-	creditsButton.y = 300;
+	creditsButton = new Sprite(100, 45);
+	creditsButton.image = game.assets['images/bot_credits.png'];
+	creditsButton.x = 610;
+	creditsButton.y = 500;
 	intro.addChild(creditsButton);
 
 	intro.addEventListener('touchend', function(enviroment) {
 		console.log(enviroment);
 		x = Math.floor(enviroment.localX);
 		y = Math.floor(enviroment.localY);
-		if (x > 150 && x < 350 && y > 300 && y < 500) {
+		if (x > 610 && x < 710 && y > 430 && y < 475) {
 			console.log('Go to the city');
-			var city = getCityScene();
-			score = 0;
-    	    game.pushScene(city);
+			var instructions = getInstructionsScene();
+    	    game.pushScene(instructions);
     	}
 
-    	if (x > 450 && x < 600 && y > 300 && y < 500) {
+    	if (x > 610 && x < 710 && y > 500 && y < 545) {
     		var credits = getCreditsScene();
     		game.pushScene(credits);
     	}

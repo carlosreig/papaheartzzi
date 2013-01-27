@@ -1,13 +1,19 @@
 function Npc(region, id) {
-	var region = Math.floor(Math.random()*2);
+	var region = region;
 	image = 'images/npc' + region + '.png';
 	
 	var pj = new Pj(region, image);
+
+	if (region == 2) {
+		pj.spriteWidth = 15;
+		pj.spriteHeight = 15;
+	}
+
 	pj.setId('npc' + id);
 	
-	var direction = (Math.random() > 0.5) ? [0, 1] : [1, 0];
-	var waitingTime = [30, 10];
-	var frameCounter = 0;
+	var direction = directions[Math.floor(Math.random()*4)];
+	var waitingTime = [30, 10, 20];
+
 	var self = this;
 
 	this.getSprite = function() {
@@ -29,74 +35,69 @@ function Npc(region, id) {
 	this.getY = function() {
 		return pj.getY();
 	}
-
+	
 	this.getId = function() {
 		return pj.getId();
 	}
-	
-	this.changeDirection = function() {
-		if (direction[0] != 0)
-			direction[0] = (-1) * direction[0];
-		else
-			direction[1] = (-1) * direction[1];
+
+	this.setDirection = function(direction) {
+		this.direction = direction;
+	}
+
+	this.getDirection = function() {
+		return this.direction;
 	}
 	
 	this.getAvailableDirections = function() {
-		//Get the new possible directions (removing the actual)
-		var tilePosition = pj.getActualPositionInTile();
-		var row = tilePosition[0];
-		var col = tilePosition[1];
-		console.log(row, col)
-		var neighbors = [[row - 1, col], [row, col + 1], [row + 1, col], [row, col -1]];
-		
-		var availableDirections = Array();
-		var newDirection;
-		console.log(neighbors);
-		for (i = 0; i < neighbors.length; i++) {
-		
-			if (collisions[neighbors[i][1]][neighbors[i][0]] == 0) {
-			
-				if (neighbors[i][0] == row)
-					newDirection = [0, ((neighbors[i][1] > col) ? 1 : -1)];
-				else
-					newDirection = [((neighbors[i][0] > row) ? 1 : -1), 0];
-				
-				if (Math.abs(newDirection[0]) != Math.abs(direction[0])) //Only can turn in other dimension
-					availableDirections.push(newDirection);
+		availableDirections = Array();
+		for (moves = 0; moves < 4; moves++) {
+			possibleDirection = directions[moves];
+			if (pj.isMoveAllowed(possibleDirection)) {
+				availableDirections.push(possibleDirection);
 			}
 		}
-		
 		return availableDirections;
 	}
 	
-	this.getDirectionString = function(directionVector) {
-		if (directionVector[0] == 0)
-			return (directionVector[1] > 0) ? 'right' : 'left';
-		else
-			return (directionVector[0] > 0) ? 'down' : 'up';
-	}
-	
-	this.step = function(availableDirections) {
+	this.prepareNextMoveDirection = function() {
+		availableDirections = this.getAvailableDirections();
 		//Make a step of movement
-		if (availableDirections.length == 0 && !collisions[col + direction[1]][row + direction[0]]) {
-			this.changeDirection();
-		} else {
-			this.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
+
+		if (availableDirections.length == 0) {
+			console.log(this.getId() + " is stuck");
 		}
-		
-		if (pj.isMoveAllowed(this.getDirectionString(direction), speed)) {
-			pj.addX(speed * direction[0]);
-			pj.addY(speed * direction[1]);
+		else if (availableDirections.length == 1) {
+			this.setDirection(availableDirections[0]);
+		}
+		else {
+			finalDirections = Array();
+			for (possibleMoves = 0; possibleMoves < availableDirections.length; possibleMoves++) {
+				if (availableDirections[possibleMoves] !== getOppositeMovement(this.direction)) {
+					finalDirections.push(availableDirections[possibleMoves]);
+				}
+			}
+			nextMovement = Math.floor(Math.random()*finalDirections.length);
+			this.setDirection(finalDirections[nextMovement]);
 		}
 	}
-    
 
 	city.addEventListener('enterframe', function() {
-		if (frameCounter++ == waitingTime[region]) {
-			var directions = self.getAvailableDirections();
-		
-			self.step(directions);
-			frameCounter = 0;
+		if ((frameCount % waitingTime[region]) == 0) {
+			self.prepareNextMoveDirection();
+			switch(self.direction) {
+				case 'up':
+					pj.substractY(speed);
+					break;
+				case 'down':
+					pj.addY(speed);
+					break;
+				case 'left':
+					pj.substractX(speed);
+					break;
+				case 'right':
+					pj.addX(speed);
+					break;
+			}
 		}
     });
 }

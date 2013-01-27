@@ -1,6 +1,17 @@
 function getGameMap() {
     map = new Map(tileSize, tileSize);
-    map.image = game.assets['images/tileMap.png'];
+    randomMap = Math.floor(Math.random()*2)+1;
+    map.image = game.assets['images/tileMap' + randomMap + '.png'];
+    switch(randomMap) {
+        case 1:
+            map_matrix = map_matrix1;
+            collisions = collisions1;
+            break;
+        case 2:
+            map_matrix = map_matrix2;
+            collisions = collisions2;
+            break;
+    }
     map.loadData(map_matrix);
     map.collisionData = collisions;
     
@@ -31,7 +42,7 @@ function isPositionAvailable(x, y, transform) {
     if (debug) {
         console.log('Map function isPositionAvailable');
     }
-    
+
     if (y > (verticalTiles - 1) || y < 0 || x > (horizontalTiles - 1) || x < 0 || collisions[y][x] > 0) {
 
         if (debug) {
@@ -45,4 +56,11 @@ function isPositionAvailable(x, y, transform) {
         }
         return true;
     }
+}
+
+function mapReset() {
+    pjsList = [];
+    score = 0;
+    timer = 0;
+    frame = 0;
 }

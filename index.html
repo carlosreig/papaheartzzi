@@ -18,23 +18,31 @@
         <script type="text/javascript" language="javascript" src="js/scenes/intro.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/credits.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/score.js"></script>
+        <script type="text/javascript" language="javascript" src="js/scenes/instructions.js"></script>
     </head>
     <body style="margin:0; padding: 0;">
         <script>
             enchant(); // initialize
             var game = new Game(width, height); // game stage
             game.fps = fps;
-            game.preload('images/tileMap.png', 
+            game.preload('images/tileMap1.png',
+                         'images/tileMap2.png',
                          'images/paparazzi.png', 
                          'images/celebrity.png',
                          'images/logo.png',
                          'images/introbackground.png',
-                         'images/button.png',
+                         'images/blackbackground.png',
+                         'images/credits.png',
+                         'images/bot_start.png',
+                         'images/bot_credits.png',
                          'images/start.png',
                          'images/celebritywins.png',
                          'images/paparazziwins.png',
                          'images/npc0.png',
                          'images/npc1.png',
+                         'images/npc2.png',
+                         'images/inicio.png',
+                         'images/instructions.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav',
                          'misc/heartbeat_slow.wav',
@@ -42,6 +50,7 @@
                          'misc/heartbeat_quick.wav',
                          'misc/notice.wav',
                          'misc/womanScream.wav',
+                         'misc/bark2.wav',
                          'misc/womanScreamShort.wav'
                          );
             var sounds = [];
@@ -52,11 +61,9 @@
             sounds['heart_quick'] = 'misc/heartbeat_quick.wav';
             sounds['notice'] = 'misc/notice.wav';
             sounds['scream'] = 'misc/womanScream.wav';
+            sounds['dog'] = 'misc/bark2.wav',
             sounds['screamShort'] = 'misc/womanScreamShort.wav';
             var heartbeatLevel = 'slow';
-            var timer = 0;
-            var frameCount = 0;
-            var score = 0;
             game.onload = function() {
                 var map = getGameMap();
                 var intro = getIntroScene();

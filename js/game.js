@@ -5,7 +5,7 @@ var tileSize = 30;
 var fps = 30;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
-var speed = 30;
+var speed = tileSize;
 
 // Calculated variables
 var horizontalTiles =  width / tileSize;
@@ -17,7 +17,13 @@ var debug = false;
 // Enable for background music
 var isMusicEnabled = true;
 
-// List of sprites
+// Game settings
 var pjsList = [];
+var timer = 0;
+var frameCount = 0;
+var score = 0;
+var timerOut = 30;
 
 enchant.ENV.KEY_BIND_TABLE['32'] = 'a';
+
+var directions = ['left', 'right', 'up', 'down'];

@@ -3,13 +3,13 @@ function getScoreScene() {
 	// Background image
 	background = new Sprite(width, height);
 
-	if (score < 3) {
-		winner = 'celebrity';
-		background.image = game.assets['images/celebritywins.png'];
-	}
-	else {
+	if (score >= 1) {
 		winner = 'paparatzzi';
 		background.image = game.assets['images/paparazziwins.png'];
+	}
+	else {
+		winner = 'celebrity';
+		background.image = game.assets['images/celebritywins.png'];
 	}
 
 	background.x = 0;
@@ -17,6 +17,7 @@ function getScoreScene() {
 	scoreScreen.addChild(background);
 
 	scoreScreen.addEventListener('touchend', function(enviroment) {
+		mapReset();
 		credits = getCreditsScene();
 		game.pushScene(credits);
 	});
