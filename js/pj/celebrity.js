@@ -29,6 +29,7 @@ function Celebrity(spriteWidth, spriteHeight) {
 	}
 
 	document.addEventListener('keydown', function(e) {
+		console.log(e.keyCode);
 		switch(e.keyCode)
 		{
 			// S key
@@ -43,7 +44,6 @@ function Celebrity(spriteWidth, spriteHeight) {
 	   		    if (pj.isMoveAllowed('left', speed)) {
 	   		     	pj.substractX(speed);
 	   		    }
-	   		    
 	   		    pj.sprite.frame = pj.forwardFrames;
 	   		    break;
 	   		// D key

@@ -57,6 +57,17 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	    }
 	    pj.sprite.frame = pj.forwardFrames;
 	});
+
+	game.addEventListener('abuttondown', function() {
+	    game.assets[sounds['camera']].play();
+	    firstSprite = pj.getSprite();
+	    secondSprite = pjsList[0].getSprite();
+	    almostCollided = isNearCollision(firstSprite, secondSprite, 100);
+	    console.log(almostCollided);
+		if (almostCollided) {
+			game.assets[sounds['screamShort']].play();
+		}
+	});
 	
 	game.addEventListener('downbuttonup', function() {
 	    pj.sprite.frame = [];
@@ -75,6 +86,7 @@ function Paparazzi(spriteWidth, spriteHeight) {
 	});
 
 	document.addEventListener('keydown', function(e) {
+		console.log(e.keyCode);
 		switch(e.keyCode)
 		{
 			case '':

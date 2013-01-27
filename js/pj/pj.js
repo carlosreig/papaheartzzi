@@ -146,7 +146,7 @@ function hasCollided(firstSprite, secondSprite) {
 }
 
 function isNearCollision(firstSprite, secondSprite, tilesAway) {
-    if(firstSprite.getSprite.within(secondSprite.getSprite, tilesAway)) {
+    if(firstSprite.within(secondSprite, tilesAway)) {
         return true;
     }
     return false;
