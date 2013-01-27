@@ -15,16 +15,31 @@
         <script>
             enchant(); // initialize
             var game = new Game(width, height); // game stage
-            game.fps = 30;
+            game.fps = fps;
             game.preload('images/tileMap.png', 
                          'images/paparazzi.png', 
                          'images/celebrity.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav',
-                         'misc/heartbeat.wav'
+                         'misc/heartbeat_slow.wav',
+                         'misc/heartbeat_normal.wav',
+                         'misc/heartbeat_quick.wav',
+                         'misc/notice.wav',
+                         'misc/womanScream.wav',
+                         'misc/womanScreamShort.wav'
                          );
-            var music = 'misc/bgm.wav';
-            var heartbeat = 'misc/heartbeat.wav';
+            var sounds = [];
+            sounds['bgm'] = 'misc/bgm.wav';
+            sounds['camera'] = 'misc/camera.wav';
+            sounds['heart_slow'] = 'misc/heartbeat_slow.wav';
+            sounds['heart_normal'] = 'misc/heartbeat_normal.wav';
+            sounds['heart_quick'] = 'misc/heartbeat_quick.wav';
+            sounds['notice'] = 'misc/notice.wav';
+            sounds['scream'] = 'misc/womanScream.wav';
+            sounds['screamShort'] = 'misc/womanScreamShort.wav';
+            var heartbeatLevel = 'slow';
+            var timer = 0;
+            var frameCount = 0;
             game.onload = function() {
                 var map = getGameMap();
                 var scene = new Scene();                
@@ -32,18 +47,37 @@
                 var celebrity = new Celebrity(10, 30);
                 var paparazzi = new Paparazzi(10, 30);
                 
-                pjsList[0] = paparazzi;
-                pjsList[1] = celebrity;
+                pjsList[0] = celebrity;
+                pjsList[1] = paparazzi;
 
                 // Background music
                 if (isMusicEnabled) {
-                    this.assets[music].play();
+                    game.assets[sounds['bgm']].play();
                 }
 
                 // Heartbreak music
                 if (isMusicEnabled) {
                     game.addEventListener('enterframe', function() {
-                        this.assets[heartbeat].play();
+                        frameCount = (frameCount + 1) % fps;
+                        if (frameCount == 0) {
+                            timer += 1;
+                            console.log(timer);
+                        }
+
+                        if ((timer % 88) == 0) {
+                            game.assets[sounds['bgm']].play();
+                        }
+                        switch (heartbeatLevel) {
+                            case 'slow':
+                                game.assets[sounds['heart_slow']].play();
+                                break;
+                            case 'normal':
+                                game.assets[sounds['heart_normal']].play();
+                                break;
+                            case 'quick':
+                                game.assets[sounds['heart_quick']].play();
+                                break;
+                        }
                     });
                 }
 

@@ -1,4 +1,5 @@
 // Global variables
+
 var width = 810;
 var height = 600;
 var tileSize = 15;
@@ -14,7 +15,9 @@ var verticalTiles = height / tileSize;
 var debug = false;
 
 // Enable for background music
-var isMusicEnabled = false;
+var isMusicEnabled = true;
 
 // List of sprites
 var pjsList = [];
+
+enchant.ENV.KEY_BIND_TABLE['32'] = 'a';
