@@ -33,7 +33,7 @@ function getCityScene() {
             }
         }
 
-        if ((timer > 0 && (timer % 120) == 0) || score == 3) {
+        if ((timer > 0 && (timer % 30) == 0) || score == 1) {
             scoreScene = getScoreScene();
             game.pushScene(scoreScene);  
         }
