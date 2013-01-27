@@ -1,9 +1,15 @@
 function Npc(region, id) {
-	region = Math.floor(Math.random()*4);
-	image = 'images/celebrity.png';
+	var region = Math.floor(Math.random()*2);
+	image = 'images/npc' + region + '.png';
+	
 	var pj = new Pj(region, image);
 	pj.setId('npc' + id);
-	direction = Math.floor(Math.random()*4);
+	
+	console.log(region);	
+	var direction = (Math.random() > 0.5) ? [0, 1] : [1, 0];
+	var waitingTime = [30, 10];
+	var frameCounter = 0;
+	var self = this;
 
 	this.getSprite = function() {
 		return pj.getSprite();
@@ -27,6 +33,53 @@ function Npc(region, id) {
 
 	this.getId = function() {
 		return pj.getId();
+	}
+	
+	this.changeDirection = function() {
+		if (direction[0] != 0)
+			direction[0] = (-1) * direction[0];
+		else
+			direction[1] = (-1) * direction[1];
+	}
+	
+	this.getAvailableDirections = function() {
+		//Get the new possible directions (removing the actual)
+		var tilePosition = pj.getActualPositionInTile();
+		var row = tilePosition[0];
+		var col = tilePosition[1];
+		var neighbors = [[row - 1, col], [row, col + 1], [row + 1, col], [row, col -1]];
+		
+		var availableDirections = Array();
+		var newDirection;
+		
+		for (var i = 0; i < neighbors.length; i++) {
+			if (!collisions[neighbors[i][0]][neighbors[i][1]]) {
+			
+				if (neighbors[i][0] == row)
+					newDirection = [0, ((neighbors[i][col] > col) ? 1 : -1)];
+				else
+					newDirection = [((neighbors[i][0] > row) ? 1 : -1), 0];
+				
+				if (Math.abs(newDirection[0]) != Math.abs(newDirection[0])) //Only can turn in other dimension
+					availablePositions.push(newDirection);
+			}
+		}
+		
+		if (availableDirections.length == 0 && collisions[row + direction[0]][col + direction[1]]) {
+			this.changeDirection();
+		}
+		
+		return availableDirections;
+	}
+	
+	
+	this.step = function(availableDirections) {
+		//Make a step of movement
+		
+		self.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
+		
+		pj.addX(speed * direction[0]);
+		pj.addY(speed * direction[1]);
 	}
 
 	city.addEventListener('enterframe', function() {
@@ -76,5 +129,13 @@ function Npc(region, id) {
 	   			pj.sprite.frame = [5];
 	    }
     });
-    
+
+	city.addEventListener('enterframe', function() {
+		if (frameCounter++ == waitingTime[region]) {
+			var directions = self.getAvailableDirections();
+		
+			self.step(directions);
+			frameCounter = 0;
+		}
+    });
 }
