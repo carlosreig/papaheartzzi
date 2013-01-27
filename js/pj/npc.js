@@ -29,7 +29,7 @@ function Npc(region, id) {
 		return pj.getId();
 	}
 
-	game.addEventListener('enterframe', function() {
+	city.addEventListener('enterframe', function() {
 		switch(e.keyCode)
 		{
 			// S key

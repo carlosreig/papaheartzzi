@@ -16,6 +16,8 @@
         <!-- Scene files -->
         <script type="text/javascript" language="javascript" src="js/scenes/city.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/intro.js"></script>
+        <script type="text/javascript" language="javascript" src="js/scenes/credits.js"></script>
+        <script type="text/javascript" language="javascript" src="js/scenes/score.js"></script>
     </head>
     <body style="margin:0; padding: 0;">
         <script>
@@ -25,6 +27,12 @@
             game.preload('images/tileMap.png', 
                          'images/paparazzi.png', 
                          'images/celebrity.png',
+                         'images/logo.png',
+                         'images/introbackground.png',
+                         'images/button.png',
+                         'images/start.png',
+                         'images/celebritywins.png',
+                         'images/paparazziwins.png',
                          'misc/camera.wav', 
                          'misc/bgm.wav',
                          'misc/heartbeat_slow.wav',
@@ -46,14 +54,12 @@
             var heartbeatLevel = 'slow';
             var timer = 0;
             var frameCount = 0;
+            var score = 0;
             game.onload = function() {
                 var map = getGameMap();
                 var intro = getIntroScene();
 
                 game.pushScene(intro);
-                
-                var city = getCityScene();
-                game.pushScene(city);
             };
             game.start(); // start the game!
         </script>

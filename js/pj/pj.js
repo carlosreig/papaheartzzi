@@ -151,3 +151,49 @@ function isNearCollision(firstSprite, secondSprite, tilesAway) {
     }
     return false;
 }
+
+function updateHeartSound() {
+	first = pjsList.length - 1;
+	second = first - 1;
+	paparatzzi = pjsList[first].getSprite();
+	celebrity = pjsList[second].getSprite();
+	if (isNearCollision(paparatzzi, celebrity, 50)) {
+		heartbeatLevel = 'quick';
+	}
+	else if (isNearCollision(paparatzzi, celebrity, 150)) {
+		heartbeatLevel = 'normal';
+	}
+	else {
+		heartbeatLevel = 'slow';
+	}
+}
+
+function getCelebrity() {
+	position = getCelebrityPosition();
+	if (position !== false) {
+		return pjsList[position];
+	}
+	return false;
+}
+
+function getCelebrityPosition() {
+	for (i = pjsList.length - 1; i >= 0; i--) {
+		if (pjsList[i].getId() == 'celebrity') {
+			return i;
+		}
+	}
+	return false;
+}
+
+function deleteCelebrity(celebPosition) {
+	if (celebPosition == (pjsList.length - 1)) {
+		pjsList.pop();
+	}
+	else {
+		celeb = pjsList[celebPosition];
+		temp = pjsList[pjsList.length - 1];
+		pjsList[pjsList.length - 1] = celeb;
+		pjsList[celebPosition] = temp;
+		pjsList.pop();
+	}
+}
