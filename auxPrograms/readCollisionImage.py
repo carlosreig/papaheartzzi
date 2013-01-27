@@ -43,7 +43,7 @@ for i in range(numberOfTilesVertical):
 		else:
 			print int(colisionableMatrix[i][j]),;
 	if i != numberOfTilesVertical - 1:
-		print "],",;
+		print "],";
 	else:
 		print "]",;
 print "];";
