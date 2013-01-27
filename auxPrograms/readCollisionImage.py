@@ -2,7 +2,7 @@ import Image;
 import numpy;
 import sys;
 
-DEFAULT_TILE_SIZE = 16
+DEFAULT_TILE_SIZE = 15
 
 if len(sys.argv) < 2:
 	sys.exit("Use: readCollisionImage.py imagecolision.png [tileSize]" + "\n");
@@ -30,10 +30,11 @@ for row in range(numberOfTilesVertical):
 				pixel = pixels[col * tileSize + j, row * tileSize + i];
 				average += (pixel[0] + pixel[1] + pixel[2]) / 3;
 				
-		average = average / (tileSize * tileSize);		
-		if row == 25 and col == 46:
-			print average;
-		colisionableMatrix[row][col] = (1, 0) [average > 128];
+		average = average / (tileSize * tileSize);
+		if average > 128:
+			colisionableMatrix[row][col] = 1;
+		else:
+			colisionableMatrix[row][col] = 0;
 
 print "var collisions = [";
 for i in range(numberOfTilesVertical):

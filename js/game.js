@@ -1,6 +1,6 @@
 // Global variables
-var width = 810;
-var height = 600;
+var width = 405;
+var height = 300;
 var tileSize = 15;
 var fps = 30;
 

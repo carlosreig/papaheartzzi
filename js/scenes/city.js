@@ -3,9 +3,12 @@ function getCityScene() {
     gameScene = new Scene();
     var celebrity = new Celebrity(10, 30);
     var paparazzi = new Paparazzi(10, 30);
-    var npc = new Npc(0, 0);
+    
 	//npcs here
-	pjsList.push(npc);
+	for (var i = 0; i < 0; i++) {
+		var npc = new Npc(0, i);
+		pjsList.push(npc);
+	}
     pjsList.push(celebrity);
     pjsList.push(paparazzi);
 

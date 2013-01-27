@@ -37,7 +37,7 @@ class TileList:
 		
 
 DEFAULT_OUTPUT_IMAGE = 'tileMap.png'
-DEFAULT_TILE_SIZE = 16
+DEFAULT_TILE_SIZE = 15
 
 if len(sys.argv) < 2:
 	sys.exit("Use: readMapImage.py fullMap.png [tileSize] [outputFile]" + "\n");

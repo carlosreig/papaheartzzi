@@ -5,7 +5,6 @@ function Npc(region, id) {
 	var pj = new Pj(region, image);
 	pj.setId('npc' + id);
 	
-	console.log(region);	
 	var direction = (Math.random() > 0.5) ? [0, 1] : [1, 0];
 	var waitingTime = [30, 10];
 	var frameCounter = 0;
@@ -51,8 +50,8 @@ function Npc(region, id) {
 		
 		var availableDirections = Array();
 		var newDirection;
-		
 		for (var i = 0; i < neighbors.length; i++) {
+		
 			if (!collisions[neighbors[i][0]][neighbors[i][1]]) {
 			
 				if (neighbors[i][0] == row)
@@ -60,8 +59,8 @@ function Npc(region, id) {
 				else
 					newDirection = [((neighbors[i][0] > row) ? 1 : -1), 0];
 				
-				if (Math.abs(newDirection[0]) != Math.abs(newDirection[0])) //Only can turn in other dimension
-					availablePositions.push(newDirection);
+				if (Math.abs(newDirection[0]) != Math.abs(direction[0])) //Only can turn in other dimension
+					availableDirections.push(newDirection);
 			}
 		}
 		
@@ -72,14 +71,21 @@ function Npc(region, id) {
 		return availableDirections;
 	}
 	
+	this.getDirectionString = function(directionVector) {
+		if (directionVector[0] == 0)
+			return (directionVector[1] > 0) ? 'right' : 'left';
+		else
+			return (directionVector[0] > 0) ? 'down' : 'up';
+	}
 	
 	this.step = function(availableDirections) {
 		//Make a step of movement
+		this.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
 		
-		self.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
-		
-		pj.addX(speed * direction[0]);
-		pj.addY(speed * direction[1]);
+		if (pj.isMoveAllowed(this.getDirectionString(direction), speed)) {
+			pj.addX(speed * direction[0]);
+			pj.addY(speed * direction[1]);
+		}
 	}
 
 	game.addEventListener('enterframe', function() {
