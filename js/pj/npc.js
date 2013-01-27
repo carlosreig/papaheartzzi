@@ -46,26 +46,24 @@ function Npc(region, id) {
 		var tilePosition = pj.getActualPositionInTile();
 		var row = tilePosition[0];
 		var col = tilePosition[1];
+		console.log(row, col)
 		var neighbors = [[row - 1, col], [row, col + 1], [row + 1, col], [row, col -1]];
 		
 		var availableDirections = Array();
 		var newDirection;
-		for (var i = 0; i < neighbors.length; i++) {
+		console.log(neighbors);
+		for (i = 0; i < neighbors.length; i++) {
 		
-			if (!collisions[neighbors[i][0]][neighbors[i][1]]) {
+			if (collisions[neighbors[i][1]][neighbors[i][0]] == 0) {
 			
 				if (neighbors[i][0] == row)
-					newDirection = [0, ((neighbors[i][col] > col) ? 1 : -1)];
+					newDirection = [0, ((neighbors[i][1] > col) ? 1 : -1)];
 				else
 					newDirection = [((neighbors[i][0] > row) ? 1 : -1), 0];
 				
 				if (Math.abs(newDirection[0]) != Math.abs(direction[0])) //Only can turn in other dimension
 					availableDirections.push(newDirection);
 			}
-		}
-		
-		if (availableDirections.length == 0 && collisions[row + direction[0]][col + direction[1]]) {
-			this.changeDirection();
 		}
 		
 		return availableDirections;
@@ -80,61 +78,18 @@ function Npc(region, id) {
 	
 	this.step = function(availableDirections) {
 		//Make a step of movement
-		this.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
+		if (availableDirections.length == 0 && !collisions[col + direction[1]][row + direction[0]]) {
+			this.changeDirection();
+		} else {
+			this.direction = availableDirections[Math.floor(Math.random() * availableDirections.length)];
+		}
 		
 		if (pj.isMoveAllowed(this.getDirectionString(direction), speed)) {
 			pj.addX(speed * direction[0]);
 			pj.addY(speed * direction[1]);
 		}
 	}
-
-	city.addEventListener('enterframe', function() {
-		switch(e.keyCode)
-		{
-			// S key
-			case 83: 
-				if (pj.isMoveAllowed('down', speed)) {
-	        		pj.addY(speed);
-	    		}
-	   		    pj.sprite.frame = pj.forwardFrames;
-	    		break;
-	    	// A key
-	    	case 65:
-	   		    if (pj.isMoveAllowed('left', speed)) {
-	   		     	pj.substractX(speed);
-	   		    }
-	   		    pj.sprite.frame = pj.forwardFrames;
-	   		    break;
-	   		// D key
-	   		case 68:
-	   		    if (pj.isMoveAllowed('right', speed)) {
-	   			    pj.addX(speed);
-	   			}
-
-	   		    pj.sprite.frame = pj.forwardFrames;
-	   		    break;
-	   		// W key
-	   		case 87:
-	   		    if (pj.isMoveAllowed('up', speed)) {
-	   		    	pj.substractY(speed);
-	   		    }
-				pj.sprite.frame = pj.backwardFrames;
-	   		    break;
-	    }
-    });
     
-    document.addEventListener('keyup', function(e) {
-		switch(e.keyCode)
-		{
-			case 83: //down
-		    case 65: //left
-	   		case 68://right
-	   			pj.sprite.frame = [];
-	   			break;
-	   		case 87://top
-	   			pj.sprite.frame = [5];
-	    }
-    });
 
 	city.addEventListener('enterframe', function() {
 		if (frameCounter++ == waitingTime[region]) {

@@ -8,7 +8,7 @@ function getCityScene() {
     pjsList[1] = paparazzi;
     
 	//npcs here
-	for (var i = 0; i < 0; i++) {
+	for (var i = 0; i < 3; i++) {
 		var npc = new Npc(0, i);
 		pjsList.push(npc);
 	}
