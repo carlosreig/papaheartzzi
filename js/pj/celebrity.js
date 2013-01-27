@@ -37,6 +37,7 @@ function Celebrity() {
 				if (pj.isMoveAllowed('down', speed)) {
 	        		pj.addY(speed);
 	    		}
+	    		updateHeartSound();
 	   		    pj.sprite.frame = pj.forwardFrames;
 	    		break;
 	    	// A key
@@ -44,6 +45,7 @@ function Celebrity() {
 	   		    if (pj.isMoveAllowed('left', speed)) {
 	   		     	pj.substractX(speed);
 	   		    }
+	    		updateHeartSound();
 	   		    pj.sprite.frame = pj.forwardFrames;
 	   		    break;
 	   		// D key
@@ -51,7 +53,7 @@ function Celebrity() {
 	   		    if (pj.isMoveAllowed('right', speed)) {
 	   			    pj.addX(speed);
 	   			}
-
+	    		updateHeartSound();
 	   		    pj.sprite.frame = pj.forwardFrames;
 	   		    break;
 	   		// W key
@@ -59,6 +61,7 @@ function Celebrity() {
 	   		    if (pj.isMoveAllowed('up', speed)) {
 	   		    	pj.substractY(speed);
 	   		    }
+	    		updateHeartSound();
 				pj.sprite.frame = pj.backwardFrames;
 	   		    break;
 	    }

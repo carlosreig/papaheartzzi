@@ -1,8 +1,11 @@
 
 function getCityScene() {
-    gameScene = new Scene();
-    var celebrity = new Celebrity(10, 30);
-    var paparazzi = new Paparazzi(10, 30);
+    city = new Scene();
+    var celebrity = new Celebrity();
+    var paparazzi = new Paparazzi();
+
+    pjsList[0] = celebrity;
+    pjsList[1] = paparazzi;
     
 	//npcs here
 	for (var i = 0; i < 0; i++) {
@@ -17,18 +20,24 @@ function getCityScene() {
         game.assets[sounds['bgm']].play();
     }
 
-    // Heartbreak music
-    if (isMusicEnabled) {
-        game.addEventListener('enterframe', function() {
-            frameCount = (frameCount + 1) % fps;
-            if (frameCount == 0) {
-                timer += 1;
-                console.log(timer);
-            }
+    city.addEventListener('enterframe', function() {
+        frameCount = (frameCount + 1) % fps;
+        if (frameCount == 0) {
+            timer += 1;
+        }
 
+        if (isMusicEnabled) {
             if ((timer % 88) == 0) {
                 game.assets[sounds['bgm']].play();
             }
+        }
+
+        if ((timer > 0 && (timer % 120) == 0) || score == 3) {
+            scoreScene = getScoreScene();
+            game.pushScene(scoreScene);  
+        }
+
+        if (isMusicEnabled) {
             switch (heartbeatLevel) {
                 case 'slow':
                     game.assets[sounds['heart_slow']].play();
@@ -40,12 +49,12 @@ function getCityScene() {
                     game.assets[sounds['heart_quick']].play();
                     break;
             }
-        });
-    }
+        }
+    });
 
-    gameScene.addChild(map);
+    city.addChild(map);
     for (i = 0; i < pjsList.length; i++) {
-        gameScene.addChild(pjsList[i].getSprite());
+        city.addChild(pjsList[i].getSprite());
     }
-    return gameScene;
+    return city;
 }

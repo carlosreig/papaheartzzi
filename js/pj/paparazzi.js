@@ -28,70 +28,72 @@ function Paparazzi() {
 		return pj.getId();
 	}
 
-	game.addEventListener('downbuttondown', function() {
+	city.addEventListener('downbuttondown', function() {
 	    if (pj.isMoveAllowed('down', speed)) {
 	        pj.addY(speed);
 	    }
+	    updateHeartSound();
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	game.addEventListener('upbuttondown', function() {
+	city.addEventListener('upbuttondown', function() {
 	    if (pj.isMoveAllowed('up', speed)) {
 	        pj.substractY(speed);
 	    }
-
+	    updateHeartSound();
 	    pj.sprite.frame = pj.backwardFrames;
 	});
 
-	game.addEventListener('leftbuttondown', function() {
+	city.addEventListener('leftbuttondown', function() {
 	    if (pj.isMoveAllowed('left', speed)) {
 	        pj.substractX(speed);
 	    }
+	    updateHeartSound();
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	game.addEventListener('rightbuttondown', function() {
-
+	city.addEventListener('rightbuttondown', function() {
 	    if (pj.isMoveAllowed('right', speed)) {
 	        pj.addX(speed);
 	    }
+	    updateHeartSound();
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	game.addEventListener('abuttondown', function() {
+	city.addEventListener('abuttondown', function() {
 	    game.assets[sounds['camera']].play();
 	    firstSprite = pj.getSprite();
-	    secondSprite = pjsList[0].getSprite();
-	    almostCollided = isNearCollision(firstSprite, secondSprite, 100);
-	    console.log(almostCollided);
-		if (almostCollided) {
+	    celeb = getCelebrity();
+	    console.log(celeb);
+	    secondSprite = celeb.getSprite();
+	    isAtShotDistance = isNearCollision(firstSprite, secondSprite, 50);
+	    console.log(isAtShotDistance);
+		if (isAtShotDistance) {
+			score += 1;
+			celebPosition = getCelebrityPosition();
+			city.removeChild(pjsList[celebPosition].getSprite());
+			deleteCelebrity(celebPosition);
+			celebrity = new Celebrity();
+			pjsList.push(celebrity);
+			city.addChild(celebrity.getSprite());
+			randomPosition = getAvailablePosition(collisions);
 			game.assets[sounds['screamShort']].play();
 		}
 	});
-	
-	game.addEventListener('downbuttonup', function() {
+
+	city.addEventListener('downbuttonup', function() {
 	    pj.sprite.frame = [];
 	});
 
-	game.addEventListener('upbuttonup', function() {
+	city.addEventListener('upbuttonup', function() {
 		pj.sprite.frame = [6];
 	});
 
-	game.addEventListener('leftbuttonup', function() {
+	city.addEventListener('leftbuttonup', function() {
 	   pj.sprite.frame = [];
 	});
 
-	game.addEventListener('rightbuttonup', function() {
+	city.addEventListener('rightbuttonup', function() {
 	    pj.sprite.frame = [];
-	});
-
-	document.addEventListener('keydown', function(e) {
-		console.log(e.keyCode);
-		switch(e.keyCode)
-		{
-			case '':
-			    game.assets['misc/camera.wav'].play();
-			    break;
-		}
 	});
 }

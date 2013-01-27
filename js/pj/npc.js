@@ -88,12 +88,60 @@ function Npc(region, id) {
 		}
 	}
 
-	game.addEventListener('enterframe', function() {
+	city.addEventListener('enterframe', function() {
+		switch(e.keyCode)
+		{
+			// S key
+			case 83: 
+				if (pj.isMoveAllowed('down', speed)) {
+	        		pj.addY(speed);
+	    		}
+	   		    pj.sprite.frame = pj.forwardFrames;
+	    		break;
+	    	// A key
+	    	case 65:
+	   		    if (pj.isMoveAllowed('left', speed)) {
+	   		     	pj.substractX(speed);
+	   		    }
+	   		    pj.sprite.frame = pj.forwardFrames;
+	   		    break;
+	   		// D key
+	   		case 68:
+	   		    if (pj.isMoveAllowed('right', speed)) {
+	   			    pj.addX(speed);
+	   			}
+
+	   		    pj.sprite.frame = pj.forwardFrames;
+	   		    break;
+	   		// W key
+	   		case 87:
+	   		    if (pj.isMoveAllowed('up', speed)) {
+	   		    	pj.substractY(speed);
+	   		    }
+				pj.sprite.frame = pj.backwardFrames;
+	   		    break;
+	    }
+    });
+    
+    document.addEventListener('keyup', function(e) {
+		switch(e.keyCode)
+		{
+			case 83: //down
+		    case 65: //left
+	   		case 68://right
+	   			pj.sprite.frame = [];
+	   			break;
+	   		case 87://top
+	   			pj.sprite.frame = [5];
+	    }
+    });
+
+	city.addEventListener('enterframe', function() {
 		if (frameCounter++ == waitingTime[region]) {
 			var directions = self.getAvailableDirections();
 		
 			self.step(directions);
 			frameCounter = 0;
 		}
-    });    
+    });
 }
