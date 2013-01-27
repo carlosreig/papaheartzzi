@@ -1,7 +1,7 @@
-function Pj(region, spriteWidth, spriteHeight, spriteImage) {
-	this.spriteWidth = spriteWidth;
-	this.spriteHeight = spriteHeight;
-	this.sprite = new Sprite(spriteWidth, spriteHeight);
+function Pj(region, spriteImage) {
+	this.spriteWidth = 10;
+	this.spriteHeight = 30;
+	this.sprite = new Sprite(this.spriteWidth, this.spriteHeight);
 	this.sprite.image = game.assets[spriteImage];
 
 	this.position = getAvailablePosition(collisions);
@@ -9,7 +9,7 @@ function Pj(region, spriteWidth, spriteHeight, spriteImage) {
 	this.backwardFrames = [5, 6, 7, 6, 8, 9, 8];
 	
 	this.sprite.x = this.position['width'];
-	this.sprite.y = this.position['height'] - (spriteHeight-tileSize);
+	this.sprite.y = this.position['height'] - (this.spriteHeight-tileSize);
 
 	this.id = 'pj';
 
@@ -114,22 +114,22 @@ function Pj(region, spriteWidth, spriteHeight, spriteImage) {
 		}
 		switch(direction) {
 			case 'up':
-				if (!isPositionAvailable(this.getX(), (this.getY()+(spriteHeight-tileSize)-speed), true)) {
+				if (!isPositionAvailable(this.getX(), (this.getY()+(this.spriteHeight-tileSize)-speed), true)) {
 					return false;
 				}
 				break;
 			case 'down':
-				if (!isPositionAvailable(this.getX(), (this.getY()+(spriteHeight-tileSize)+speed), true)) {
+				if (!isPositionAvailable(this.getX(), (this.getY()+(this.spriteHeight-tileSize)+speed), true)) {
 					return false;
 				}
 				break;
 			case 'left':
-				if (!isPositionAvailable((this.getX()-speed), this.getY()+(spriteHeight-tileSize), true)) {
+				if (!isPositionAvailable((this.getX()-speed), this.getY()+(this.spriteHeight-tileSize), true)) {
 					return false;
 				}
 				break;
 			case 'right':
-				if (!isPositionAvailable((this.getX()+speed), this.getY()+(spriteHeight-tileSize), true)) {
+				if (!isPositionAvailable((this.getX()+speed), this.getY()+(this.spriteHeight-tileSize), true)) {
 					return false;
 				}
 				break;

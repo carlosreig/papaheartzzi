@@ -1,8 +1,8 @@
 // Global variables
-
 var width = 810;
 var height = 600;
 var tileSize = 15;
+var fps = 30;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
 var speed = 15;

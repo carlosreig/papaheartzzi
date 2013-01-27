@@ -1,7 +1,7 @@
-function Paparazzi(spriteWidth, spriteHeight) {
+function Paparazzi() {
 	region = Math.floor(Math.random()*4);
 	image = 'images/paparazzi.png';
-	var pj = new Pj(region, spriteWidth, spriteHeight, image);
+	var pj = new Pj(region, image);
 	pj.setId('paparazzi');
 
 	this.getSprite = function() {

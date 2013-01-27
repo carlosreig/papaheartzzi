@@ -1,8 +1,9 @@
-function Celebrity() {
+function Npc(region, id) {
 	region = Math.floor(Math.random()*4);
 	image = 'images/celebrity.png';
 	var pj = new Pj(region, image);
-	pj.setId('celebrity');
+	pj.setId('npc' + id);
+	direction = Math.floor(Math.random()*4);
 
 	this.getSprite = function() {
 		return pj.getSprite();
@@ -28,8 +29,7 @@ function Celebrity() {
 		return pj.getId();
 	}
 
-	document.addEventListener('keydown', function(e) {
-		console.log(e.keyCode);
+	game.addEventListener('enterframe', function() {
 		switch(e.keyCode)
 		{
 			// S key

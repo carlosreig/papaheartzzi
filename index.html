@@ -1,15 +1,21 @@
 <!doctype html>
 <html>
     <head>
+        <!-- Enchant.JS library -->
         <script type="text/javascript" language="javascript" src="js/enchant.js"></script>
-        
+        <!-- General files -->
         <script type="text/javascript" language="javascript" src="js/mapMatrix.js"></script>
         <script type="text/javascript" language="javascript" src="js/game.js"></script>
         <script type="text/javascript" language="javascript" src="js/map.js"></script>
+        <script type="text/javascript" language="javascript" src="js/overrides.js"></script>
+        <!-- Characters - PJs -->
         <script type="text/javascript" language="javascript" src="js/pj/pj.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/paparazzi.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/celebrity.js"></script>
-        <script type="text/javascript" language="javascript" src="js/overrides.js"></script>
+        <script type="text/javascript" language="javascript" src="js/pj/npc.js"></script>
+        <!-- Scene files -->
+        <script type="text/javascript" language="javascript" src="js/scenes/city.js"></script>
+        <script type="text/javascript" language="javascript" src="js/scenes/intro.js"></script>
     </head>
     <body style="margin:0; padding: 0;">
         <script>
@@ -42,50 +48,12 @@
             var frameCount = 0;
             game.onload = function() {
                 var map = getGameMap();
-                var scene = new Scene();                
+                var intro = getIntroScene();
 
-                var celebrity = new Celebrity(10, 30);
-                var paparazzi = new Paparazzi(10, 30);
+                game.pushScene(intro);
                 
-                pjsList[0] = celebrity;
-                pjsList[1] = paparazzi;
-
-                // Background music
-                if (isMusicEnabled) {
-                    game.assets[sounds['bgm']].play();
-                }
-
-                // Heartbreak music
-                if (isMusicEnabled) {
-                    game.addEventListener('enterframe', function() {
-                        frameCount = (frameCount + 1) % fps;
-                        if (frameCount == 0) {
-                            timer += 1;
-                            console.log(timer);
-                        }
-
-                        if ((timer % 88) == 0) {
-                            game.assets[sounds['bgm']].play();
-                        }
-                        switch (heartbeatLevel) {
-                            case 'slow':
-                                game.assets[sounds['heart_slow']].play();
-                                break;
-                            case 'normal':
-                                game.assets[sounds['heart_normal']].play();
-                                break;
-                            case 'quick':
-                                game.assets[sounds['heart_quick']].play();
-                                break;
-                        }
-                    });
-                }
-
-                scene.addChild(map);
-                for (i = 0; i < pjsList.length; i++) {
-                    scene.addChild(pjsList[i].getSprite());
-                }
-                game.pushScene(scene);
+                var city = getCityScene();
+                game.pushScene(city);
             };
             game.start(); // start the game!
         </script>
