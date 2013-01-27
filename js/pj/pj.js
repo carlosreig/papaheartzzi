@@ -1,6 +1,6 @@
 function Pj(region, spriteImage) {
-	this.spriteWidth = 10;
-	this.spriteHeight = 30;
+	this.spriteWidth = 20;
+	this.spriteHeight = 60;
 	this.sprite = new Sprite(this.spriteWidth, this.spriteHeight);
 	this.sprite.image = game.assets[spriteImage];
 
