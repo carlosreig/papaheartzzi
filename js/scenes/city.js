@@ -6,9 +6,9 @@ function getCityScene() {
 
     pjsList[0] = celebrity;
     pjsList[1] = paparazzi;
-    var npc = new Npc(0, 0);
+    //var npc = new Npc(0, 0);
 	//npcs here
-	pjsList.push(npc);
+	//pjsList.push(npc);
     pjsList.push(celebrity);
     pjsList.push(paparazzi);
 
