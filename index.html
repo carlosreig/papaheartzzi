@@ -35,16 +35,17 @@
                 pjsList[0] = paparazzi;
                 pjsList[1] = celebrity;
 
-
                 // Background music
                 if (isMusicEnabled) {
                     this.assets[music].play();
                 }
 
                 // Heartbreak music
-                game.addEventListener('enterframe', function() {
-                    this.assets[music].play();
-                });                
+                if (isMusicEnabled) {
+                    game.addEventListener('enterframe', function() {
+                        this.assets[heartbeat].play();
+                    });
+                }
 
                 scene.addChild(map);
                 for (i = 0; i < pjsList.length; i++) {
@@ -52,7 +53,7 @@
                 }
                 game.pushScene(scene);
             };
-            game.start(); // start your game!
+            game.start(); // start the game!
         </script>
     </body>
 </html>
