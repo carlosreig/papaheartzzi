@@ -7,9 +7,20 @@ function getInstructionsScene() {
     instructions.addChild(instructionsPic);
 
     instructions.addEventListener('touchend', function() {
-        city = getCityScene();
-        game.pushScene(city);
+        rand = Math.floor(Math.random()*2);
+        console.log(rand);
+        if (rand == 1) {
+            console.log('house');
+            houseMap = getHouseScene();
+            console.log(collisions);
+            game.pushScene(houseMap);
+        }
+        else {
+            console.log('garden');
+            gardenMap = getGardenScene();
+            console.log(collisions);
+            game.pushScene(gardenMap);
+        }
     });
-
     return instructions;
 }

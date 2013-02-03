@@ -81,7 +81,7 @@ function Npc(region, id) {
 		}
 	}
 
-	city.addEventListener('enterframe', function() {
+	game.addEventListener('enterframe', function() {
 		if ((frameCount % waitingTime[region]) == 0) {
 			self.prepareNextMoveDirection();
 			switch(self.direction) {

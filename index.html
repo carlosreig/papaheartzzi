@@ -14,6 +14,8 @@
         <script type="text/javascript" language="javascript" src="js/pj/celebrity.js"></script>
         <script type="text/javascript" language="javascript" src="js/pj/npc.js"></script>
         <!-- Scene files -->
+        <script type="text/javascript" language="javascript" src="js/scenes/house.js"></script>
+        <script type="text/javascript" language="javascript" src="js/scenes/garden.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/city.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/intro.js"></script>
         <script type="text/javascript" language="javascript" src="js/scenes/credits.js"></script>
@@ -65,7 +67,6 @@
             sounds['screamShort'] = 'misc/womanScreamShort.wav';
             var heartbeatLevel = 'slow';
             game.onload = function() {
-                var map = getGameMap();
                 var intro = getIntroScene();
 
                 game.pushScene(intro);

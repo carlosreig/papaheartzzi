@@ -28,7 +28,7 @@ function Paparazzi() {
 		return pj.getId();
 	}
 
-	city.addEventListener('downbuttondown', function() {
+	game.addEventListener('downbuttondown', function() {
 	    if (pj.isMoveAllowed('down', speed)) {
 	        pj.addY(speed);
 	    }
@@ -36,7 +36,7 @@ function Paparazzi() {
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	city.addEventListener('upbuttondown', function() {
+	game.addEventListener('upbuttondown', function() {
 	    if (pj.isMoveAllowed('up', speed)) {
 	        pj.substractY(speed);
 	    }
@@ -44,7 +44,7 @@ function Paparazzi() {
 	    pj.sprite.frame = pj.backwardFrames;
 	});
 
-	city.addEventListener('leftbuttondown', function() {
+	game.addEventListener('leftbuttondown', function() {
 	    if (pj.isMoveAllowed('left', speed)) {
 	        pj.substractX(speed);
 	    }
@@ -52,7 +52,7 @@ function Paparazzi() {
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	city.addEventListener('rightbuttondown', function() {
+	game.addEventListener('rightbuttondown', function() {
 	    if (pj.isMoveAllowed('right', speed)) {
 	        pj.addX(speed);
 	    }
@@ -60,7 +60,7 @@ function Paparazzi() {
 	    pj.sprite.frame = pj.forwardFrames;
 	});
 
-	city.addEventListener('abuttondown', function() {
+	game.addEventListener('abuttondown', function() {
 	    game.assets[sounds['camera']].play();
 	    firstSprite = pj.getSprite();
 	    celeb = getCelebrity();
@@ -70,30 +70,22 @@ function Paparazzi() {
 	    console.log(isAtShotDistance);
 		if (isAtShotDistance) {
 			score += 1;
-			celebPosition = getCelebrityPosition();
-			city.removeChild(pjsList[celebPosition].getSprite());
-			deleteCelebrity(celebPosition);
-			celebrity = new Celebrity();
-			pjsList.push(celebrity);
-			city.addChild(celebrity.getSprite());
-			randomPosition = getAvailablePosition(collisions);
-			game.assets[sounds['screamShort']].play();
 		}
 	});
 
-	city.addEventListener('downbuttonup', function() {
+	game.addEventListener('downbuttonup', function() {
 	    pj.sprite.frame = [];
 	});
 
-	city.addEventListener('upbuttonup', function() {
+	game.addEventListener('upbuttonup', function() {
 		pj.sprite.frame = [6];
 	});
 
-	city.addEventListener('leftbuttonup', function() {
+	game.addEventListener('leftbuttonup', function() {
 	   pj.sprite.frame = [];
 	});
 
-	city.addEventListener('rightbuttonup', function() {
+	game.addEventListener('rightbuttonup', function() {
 	    pj.sprite.frame = [];
 	});
 }

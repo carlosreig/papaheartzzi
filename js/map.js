@@ -1,19 +1,20 @@
-function getGameMap() {
+function getGardenGameMap() {
     map = new Map(tileSize, tileSize);
-    map.image = game.assets['images/tileMap' + randomMap + '.png'];
-    switch(randomMap) {
-        case 1:
-            map_matrix = map_matrix1;
-            collisions = collisions1;
-            break;
-        case 2:
-            map_matrix = map_matrix2;
-            collisions = collisions2;
-            break;
-    }
+    map.image = game.assets['images/tileMap2.png'];
+    map_matrix = map_matrix2;
+    collisions = collisions2;
     map.loadData(map_matrix);
     map.collisionData = collisions;
-    
+    return map;
+}
+
+function getHouseGameMap() {
+    map = new Map(tileSize, tileSize);
+    map.image = game.assets['images/tileMap1.png'];
+    map_matrix = map_matrix1;
+    collisions = collisions1;
+    map.loadData(map_matrix);
+    map.collisionData = collisions;
     return map;
 }
 
@@ -21,7 +22,6 @@ function getAvailablePosition() {
     var x = Math.floor(Math.random()*horizontalTiles);
     var y = Math.floor(Math.random()*verticalTiles);
     var position = Array();
-
     if (isPositionAvailable(x, y)) {
         position['width'] = ((x)*tileSize);
         position['height'] = ((y)*tileSize);
@@ -29,7 +29,6 @@ function getAvailablePosition() {
     else {
         position = getAvailablePosition();
     }
-    
     return position;
 }
 
@@ -38,21 +37,10 @@ function isPositionAvailable(x, y, transform) {
         x = (x) / tileSize;
         y = (y) / tileSize;
     }
-    if (debug) {
-        console.log('Map function isPositionAvailable');
-    }
-
     if (y > (verticalTiles - 1) || y < 0 || x > (horizontalTiles - 1) || x < 0 || collisions[y][x] > 0) {
-
-        if (debug) {
-            console.log('Position not available');
-        }
         return false;
     }
     else {
-        if (debug) {
-            console.log('Position is available');
-        }
         return true;
     }
 }

@@ -26,9 +26,8 @@ function getIntroScene() {
 		x = Math.floor(enviroment.localX);
 		y = Math.floor(enviroment.localY);
 		if (x > 610 && x < 710 && y > 430 && y < 475) {
-			console.log('Go to the city');
 			var instructions = getInstructionsScene();
-    	    game.pushScene(instructions);
+			game.pushScene(instructions);
     	}
 
     	if (x > 610 && x < 710 && y > 500 && y < 545) {
