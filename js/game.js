@@ -15,7 +15,7 @@ var verticalTiles = height / tileSize;
 var debug = false;
 
 // Enable for background music
-var isMusicEnabled = false;
+var isMusicEnabled = true;
 
 // Game settings
 var pjsList = [];
