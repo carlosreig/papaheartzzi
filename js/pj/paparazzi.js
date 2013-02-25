@@ -69,6 +69,7 @@ function Paparazzi() {
 	    isAtShotDistance = isNearCollision(firstSprite, secondSprite, 50);
 	    console.log(isAtShotDistance);
 		if (isAtShotDistance) {
+		    game.assets[sounds['screamShort']].play();
 			score += 1;
 		}
 	});
