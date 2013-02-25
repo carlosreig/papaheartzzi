@@ -4,7 +4,7 @@ function Npc(region, id) {
 	
 	var pj = new Pj(region, image);
 
-	if (region == 2) {
+	if (region == 8) {
 		pj.spriteWidth = 15;
 		pj.spriteHeight = 15;
 	}
@@ -12,7 +12,7 @@ function Npc(region, id) {
 	pj.setId('npc' + id);
 	
 	var direction = directions[Math.floor(Math.random()*4)];
-	var waitingTime = [30, 10, 20];
+	var waitingTime = [30, 20, 10, 20, 20, 10, 30, 20, 20];
 
 	var self = this;
 

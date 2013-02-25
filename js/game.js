@@ -1,7 +1,7 @@
 // Global variables
 var width = 810;
 var height = 600;
-var tileSize = 30;
+var tileSize = 15;
 var fps = 30;
 
 // TODO: FIX FOR LOWER SPEEDS!!!
@@ -22,7 +22,7 @@ var pjsList = [];
 var timer = 0;
 var frameCount = 0;
 var score = 0;
-var timerOut = 30;
+var timerOut = 60;
 var randomMap = Math.floor(Math.random()*2)+1;
 
 var map_matrix = [];

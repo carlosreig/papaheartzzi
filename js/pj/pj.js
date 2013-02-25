@@ -1,11 +1,11 @@
 function Pj(region, spriteImage) {
-	if (spriteImage == 'images/npc2.png') {
+	if (spriteImage == 'images/npc8.png') {
 		this.spriteWidth = 15;
 		this.spriteHeight = 15;
 	}
 	else {
-		this.spriteWidth = 20;
-		this.spriteHeight = 60;
+		this.spriteWidth = 10;
+		this.spriteHeight = 30;
 	}
 	this.sprite = new Sprite(this.spriteWidth, this.spriteHeight);
 	this.sprite.image = game.assets[spriteImage];
@@ -93,7 +93,7 @@ function Pj(region, spriteImage) {
 						console.log('Has collided with other sprite:');
 						console.log(otherPj.getId());
 					}
-					if (otherPj.getId() == 'npc6') {
+					if (otherPj.getId() == 'npc24') {
 						game.assets[sounds['dog']].play();
 					}
 					switch (moveDirection) {

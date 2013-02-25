@@ -1,14 +1,16 @@
 function getCityScene() {
     city = new Scene();
+    city.addChild(getCityGameMap());
+
     var celebrity = new Celebrity();
     var paparazzi = new Paparazzi();
 
-	//npcs here
-	for (var i = 0; i < 6; i++) {
-		var npc = new Npc(Math.floor(Math.random()*2), i);
+	// npcs here
+	for (var i = 0; i < 24; i++) {
+		var npc = new Npc(Math.floor(Math.random()*7), i);
 		pjsList.push(npc);
 	}
-    npc = new Npc(2, pjsList.length);
+    npc = new Npc(8, pjsList.length);
     console.log(npc.getId());
     pjsList.push(npc);
     console.log(npc);

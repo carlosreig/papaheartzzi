@@ -5,7 +5,7 @@ function customIntersect(firstSprite, secondSprite) {
     y = firstSprite.y + firstSprite.height - tileSize;
     y1 = secondSprite.y + secondSprite.height - tileSize;
     y2 = secondSprite.y + secondSprite.height;
-    hasFoundCollision = ((x >= x1 && x < x2) && y >= y1 && y < y2);
+    hasFoundCollision = ((x >= x1 && x < x2) && (y >= y1 && y < y2));
     if (debug) {
         console.log(x);
         console.log(x1);

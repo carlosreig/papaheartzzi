@@ -18,6 +18,16 @@ function getHouseGameMap() {
     return map;
 }
 
+function getCityGameMap() {
+    map = new Map(tileSize, tileSize);
+    map.image = game.assets['images/tileMap3.png'];
+    map_matrix = map_matrix3;
+    collisions = collisions3;
+    map.loadData(map_matrix);
+    map.collisionData = collisions;
+    return map;
+}
+
 function getAvailablePosition() {
     var x = Math.floor(Math.random()*horizontalTiles);
     var y = Math.floor(Math.random()*verticalTiles);

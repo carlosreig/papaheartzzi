@@ -14,6 +14,7 @@ function getHouseScene() {
     console.log(npc.getId());
     pjsList.push(npc);
     console.log(npc);
+
     pjsList.push(celebrity);
     pjsList.push(paparazzi);
 
@@ -21,6 +22,7 @@ function getHouseScene() {
     if (isMusicEnabled) {
         game.assets[sounds['bgm']].play();
     }
+    
     house.addEventListener('enterframe', function() {
         frameCount = (frameCount + 1) % fps;
         if (frameCount == 0) {
